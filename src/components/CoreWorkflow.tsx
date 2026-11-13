@@ -12,21 +12,24 @@ interface CoreWorkflowProps {
 
 const STAGE_FEATURE_DEMOS: Record<
   '01' | '02' | '03' | '04',
-  Array<{ src: string; captionZh: string; captionEn: string }>
+  Array<{ src: string; srcEn?: string; captionZh: string; captionEn: string }>
 > = {
   '01': [
     {
       src: `${import.meta.env.BASE_URL}paperread/papersearch.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/explorer_e7c22862.png`,
       captionZh: '研究探索：以 OpenAlex 搜尋主題、會議期刊（ICCV、ECCV、CVPR 等）與公開 PDF',
       captionEn: 'OpenAlex literature search across topics, venues, and open-access PDFs',
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/researchspace.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/kanban_86ab3431.png`,
       captionZh: '閱讀看板：以待閱讀、閱讀中、待整理與已完成欄位追蹤閱讀進度（SQLite 儲存）',
       captionEn: 'Reading Kanban tracks candidate triage and completion percentages in SQLite',
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/route.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/route_8a14f9c2.png`,
       captionZh: '漸進式閱讀路徑：串聯引用關係與建議閱讀順序，並附推薦理由',
       captionEn: 'Progressive reading path connects citation chains and recommended reading order',
     },
@@ -34,16 +37,19 @@ const STAGE_FEATURE_DEMOS: Record<
   '02': [
     {
       src: `${import.meta.env.BASE_URL}paperread/readingpage.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/readingpage_0e301299.png`,
       captionZh: '雙語閱讀與 PDF 原頁並排：譯文、原文、公式與圖表同步對齊，隨時核對原始脈絡',
       captionEn: 'Bilingual split reader aligning translated prose, equations, and original PDF pages',
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/notation_9a7b31c8.png`,
       captionZh: '雙語對照與貼紙標註：內建貼紙素材、段落劃線與 AI 原文釋義整理',
       captionEn: 'Bilingual annotations with built-in stickers and inline AI explanations',
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/handwrite.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/handwrite_sticker_32fe6077.png`,
       captionZh: '自由手寫與筆記：支援滑鼠手寫、筆寬／顏色切換、橡皮擦、復原重做與雙側邊欄筆記',
       captionEn: 'Freehand ink annotations with width/color controls, eraser, and margin notes',
     },
@@ -61,11 +67,13 @@ const STAGE_FEATURE_DEMOS: Record<
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/chatAI.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/askAI_918778f6.png`,
       captionZh: '深度剖析與 2–5 篇比較：保留章節與公式出處連結，協助回到原文核對',
       captionEn: 'Deep breakdown and 2–5 paper comparison anchored to original sections',
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/mindmap.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/mindmap_28437af2.png`,
       captionZh: '論文結構心智圖：自動將研究動機、方法、實驗與限制梳理為互動心智圖',
       captionEn: 'Interactive structural mindmap organizing motivation, method, and results',
     },
@@ -78,6 +86,7 @@ const STAGE_FEATURE_DEMOS: Record<
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/notation_9a7b31c8.png`,
       captionZh: '開放格式保存：所有貼紙、標註座標與 AI 解析皆保存於本機 JSON 與 Markdown',
       captionEn: 'Open JSON and Markdown persistence for long-term local backup and portability',
     },
@@ -99,6 +108,8 @@ export function CoreWorkflow({
   const activeStep = t.steps.find((s) => s.id === activeStepId) || t.steps[0];
   const demos = STAGE_FEATURE_DEMOS[activeStepId];
   const currentDemo = demos[featureIndex] || demos[0];
+  const currentDemoSrc =
+    lang === 'en' && currentDemo.srcEn ? currentDemo.srcEn : currentDemo.src;
 
   const handleStepSelect = (id: '01' | '02' | '03' | '04') => {
     onSelectStep(id);
@@ -272,7 +283,7 @@ status: archived
                       type="button"
                       onClick={() =>
                         setZoomSrc({
-                          src: currentDemo.src,
+                          src: currentDemoSrc,
                           caption: lang === 'zh' ? currentDemo.captionZh : currentDemo.captionEn,
                         })
                       }
@@ -322,14 +333,14 @@ status: archived
                     type="button"
                     onClick={() =>
                       setZoomSrc({
-                        src: currentDemo.src,
+                        src: currentDemoSrc,
                         caption: lang === 'zh' ? currentDemo.captionZh : currentDemo.captionEn,
                       })
                     }
                     className="group block w-full overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[#f6f3ec] text-left"
                   >
                     <img
-                      src={currentDemo.src}
+                      src={currentDemoSrc}
                       alt={lang === 'zh' ? currentDemo.captionZh : currentDemo.captionEn}
                       referrerPolicy="no-referrer"
                       className="aspect-[16/10] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.01]"

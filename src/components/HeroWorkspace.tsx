@@ -33,6 +33,7 @@ interface DemoShot {
   labelZh: string;
   labelEn: string;
   src: string;
+  srcEn?: string;
   captionZh: string;
   captionEn: string;
 }
@@ -44,6 +45,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       labelZh: '雙語並排對照',
       labelEn: 'Bilingual Split View',
       src: `${import.meta.env.BASE_URL}paperread/readingpage.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/readingpage_0e301299.png`,
       captionZh:
         '譯文與英文原文同步對齊顯示，數學公式、引用編號與段落脈絡精準對應，點擊即可核對原文。',
       captionEn:
@@ -76,6 +78,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       labelZh: '閱讀看板與進度',
       labelEn: 'Reading Kanban Board',
       src: `${import.meta.env.BASE_URL}paperread/researchspace.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/kanban_86ab3431.png`,
       captionZh:
         '以「待閱讀」、「閱讀中」、「待整理」、「已完成」看板統整文獻進度，每篇論文清楚呈現閱讀百分比。',
       captionEn:
@@ -86,6 +89,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       labelZh: '閱讀路徑視覺化',
       labelEn: 'Visual Reading Path',
       src: `${import.meta.env.BASE_URL}paperread/route.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/route_8a14f9c2.png`,
       captionZh:
         '從核心主題出發視覺化串聯前後代論文、引用關係與推薦理由，一鍵加入候選清單或閱讀看板。',
       captionEn:
@@ -98,6 +102,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       labelZh: '手寫筆跡與筆記',
       labelEn: 'Freehand Ink & Notes',
       src: `${import.meta.env.BASE_URL}paperread/handwrite.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/handwrite_sticker_32fe6077.png`,
       captionZh:
         '支援多色畫筆手寫標註、螢光重點、文字方塊與雙側邊欄閱讀筆記，完整保留閱讀當下的思考脈絡。',
       captionEn:
@@ -108,6 +113,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       labelZh: '貼紙素材與 AI 釋義',
       labelEn: 'Stickers & Inline AI',
       src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/notation_9a7b31c8.png`,
       captionZh:
         '內建 Mega Doodles / Lucide / Feather 貼紙素材與套索群組拖曳，搭配側邊欄原文釋義整理。',
       captionEn:
@@ -120,6 +126,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       labelZh: '論文結構心智圖',
       labelEn: 'Paper Structure Mindmap',
       src: `${import.meta.env.BASE_URL}paperread/mindmap.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/mindmap_28437af2.png`,
       captionZh:
         '自動梳理研究問題、核心方法、實驗基準與研究限制，點擊即可全覽整篇論文的邏輯骨幹。',
       captionEn:
@@ -130,6 +137,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       labelZh: '原文錨定 AI 問答',
       labelEn: 'Source-Grounded Q&A',
       src: `${import.meta.env.BASE_URL}paperread/chatAI.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/askAI_918778f6.png`,
       captionZh:
         '針對特定公式或段落提問時，自動附上對應章節出處與公式推導拆解，不脫離原文脈絡。',
       captionEn:
@@ -148,6 +156,7 @@ interface OrbitNodeMeta {
   detailZh: string;
   detailEn: string;
   thumb: string;
+  thumbEn?: string;
   tag: string;
 }
 
@@ -162,6 +171,7 @@ const ORBIT_NODES: OrbitNodeMeta[] = [
     detailZh: '串聯引用脈絡與閱讀看板，將龐雜文獻收斂為清晰的每日閱讀排程。',
     detailEn: 'Connect citation lineage and Kanban columns into a calm daily reading queue.',
     thumb: `${import.meta.env.BASE_URL}paperread/route.jpg`,
+    thumbEn: `${import.meta.env.BASE_URL}assets/aistudio/route_8a14f9c2.png`,
     tag: 'SQLite + OpenAlex',
   },
   {
@@ -174,6 +184,7 @@ const ORBIT_NODES: OrbitNodeMeta[] = [
     detailZh: '原文與譯文並排對照，結合手寫畫筆、貼紙素材與 Zotero 批次匯入。',
     detailEn: 'Verify bilingual prose beside original PDF pages with freehand ink & stickers.',
     thumb: `${import.meta.env.BASE_URL}paperread/handwrite.jpg`,
+    thumbEn: `${import.meta.env.BASE_URL}assets/aistudio/handwrite_sticker_32fe6077.png`,
     tag: 'PDF + Handwriting',
   },
   {
@@ -186,6 +197,7 @@ const ORBIT_NODES: OrbitNodeMeta[] = [
     detailZh: '一鍵生成結構化心智圖，進行 2–5 篇論文比較與附帶頁碼的問答。',
     detailEn: 'Map paper structure into mindmaps and compare 2–5 papers with grounded Q&A.',
     thumb: `${import.meta.env.BASE_URL}paperread/mindmap.jpg`,
+    thumbEn: `${import.meta.env.BASE_URL}assets/aistudio/mindmap_28437af2.png`,
     tag: 'Mindmap + Search',
   },
   {
@@ -218,7 +230,10 @@ export function HeroWorkspace({
 
   const currentGroup = DEMO_GROUPS[activeTab];
   const currentShot = currentGroup[subIndex] || currentGroup[0];
+  const currentShotSrc = lang === 'en' && currentShot.srcEn ? currentShot.srcEn : currentShot.src;
   const activeOrbit = ORBIT_NODES[orbitIdx];
+  const activeOrbitThumb =
+    lang === 'en' && activeOrbit.thumbEn ? activeOrbit.thumbEn : activeOrbit.thumb;
 
   const handleSelectTab = (tab: MockupTab) => {
     setActiveTab(tab);
@@ -516,7 +531,7 @@ export function HeroWorkspace({
                   className="flex flex-col gap-3 sm:flex-row sm:items-center"
                 >
                   <img
-                    src={activeOrbit.thumb}
+                    src={activeOrbitThumb}
                     alt={lang === 'zh' ? activeOrbit.titleZh : activeOrbit.titleEn}
                     referrerPolicy="no-referrer"
                     className="h-16 w-full shrink-0 rounded-lg border border-[var(--border-subtle)] object-cover object-top sm:w-28"
@@ -619,7 +634,7 @@ export function HeroWorkspace({
               type="button"
               onClick={() =>
                 setZoomShot({
-                  src: currentShot.src,
+                  src: currentShotSrc,
                   title: lang === 'zh' ? currentShot.labelZh : currentShot.labelEn,
                 })
               }
@@ -644,7 +659,7 @@ export function HeroWorkspace({
                   type="button"
                   onClick={() =>
                     setZoomShot({
-                      src: currentShot.src,
+                      src: currentShotSrc,
                       title: lang === 'zh' ? currentShot.labelZh : currentShot.labelEn,
                     })
                   }
@@ -654,7 +669,7 @@ export function HeroWorkspace({
                   }
                 >
                   <img
-                    src={currentShot.src}
+                    src={currentShotSrc}
                     alt={lang === 'zh' ? currentShot.labelZh : currentShot.labelEn}
                     referrerPolicy="no-referrer"
                     className="max-h-[600px] w-full bg-[#f6f3ec] object-contain object-top transition-transform duration-300 group-hover:scale-[1.004]"
