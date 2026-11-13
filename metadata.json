@@ -1,0 +1,6 @@
+{
+  "name": "PaperRead — Local-first AI Research Workspace",
+  "description": "從文獻探索、論文閱讀到知識整理的本機個人研究工作區。整合搜尋、閱讀看板、雙語原頁對照、手寫註記與 Obsidian 知識庫。",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

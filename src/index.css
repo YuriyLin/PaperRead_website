@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-page: #f6f3ec;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #eceae2;
+  --bg-surface-3: #e1ded4;
+  --bg-sage: #e8eeea;
+  --bg-hero: #17333b;
+  --bg-hero-card: rgba(255, 255, 255, 0.06);
+  --bg-code: #142228;
+  --text-primary: #162328;
+  --text-secondary: #4a5a60;
+  --text-muted: #6c7a80;
+  --border-subtle: #e2ded3;
+  --border-strong: #cbc5b7;
+  --accent-indigo: #2d6173;
+  --accent-indigo-hover: #214a58;
+  --accent-teal: #2f6e62;
+  --accent-amber: #b87b28;
+  --accent-gold: #e0a84f;
+}
+
+.dark {
+  --bg-page: #0c1418;
+  --bg-surface: #131f25;
+  --bg-surface-2: #192830;
+  --bg-surface-3: #21343e;
+  --bg-sage: #172726;
+  --bg-hero: #0f2329;
+  --bg-hero-card: rgba(255, 255, 255, 0.05);
+  --bg-code: #080f12;
+  --text-primary: #eef2f3;
+  --text-secondary: #a7b8be;
+  --text-muted: #788b92;
+  --border-subtle: #20313a;
+  --border-strong: #304753;
+  --accent-indigo: #4fa3bc;
+  --accent-indigo-hover: #67b6ce;
+  --accent-teal: #4db8a3;
+  --accent-amber: #e0a84f;
+  --accent-gold: #e0a84f;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-x: hidden;
+  }
+
+  .dark body {
+    letter-spacing: 0.01em;
+  }
+}
+
+.font-academic-serif {
+  font-family: 'Source Serif 4', Georgia, 'Noto Sans TC', serif;
+}
+
+.font-code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

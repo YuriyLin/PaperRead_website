@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/paperread/favicon.svg" />
+    <link rel="apple-touch-icon" href="/paperread/paperread-mark.png" />
+    <title>PaperRead — Local-first AI Research Workspace</title>
+    <meta
+      name="description"
+      content="從文獻探索、論文閱讀到知識整理的本機個人研究工作區。整合搜尋、閱讀看板、雙語原頁對照、手寫註記與 Obsidian 知識庫。"
+    />
+    <meta property="og:title" content="PaperRead — Local-first AI Research Workspace" />
+    <meta
+      property="og:description"
+      content="建立於 EasyRead 之上，將找論文、看板排程、雙語原頁對照、手寫註記與 Obsidian 知識庫無縫整合進同一個本機工作區。"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('paperread-theme');
+          if (saved === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
