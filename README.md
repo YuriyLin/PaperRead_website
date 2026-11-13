@@ -56,7 +56,7 @@ This repository includes a ready-to-use GitHub Actions workflow at `.github/work
 2. Open your repository on GitHub and go to **Settings** → **Pages**.
 3. Under **Build and deployment** → **Source**, select **GitHub Actions**.
 4. Every push to `main` (or manual trigger via **Actions** → **Deploy to GitHub Pages** → **Run workflow**) will automatically:
-   - Install dependencies (`npm install`)
+   - Install dependencies (`npm ci`)
    - Run TypeScript verification (`npm run lint`)
    - Detect your repository subpath (`/<repo-name>/` or `/` for `<username>.github.io`) and run `npm run build`
    - Publish `./dist` to GitHub Pages.
