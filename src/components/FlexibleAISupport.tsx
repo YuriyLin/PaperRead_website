@@ -169,7 +169,7 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
           {previewView === 'ui' ? (
             <div className="bg-[#f6f3ec] p-3 sm:p-5">
               <img
-                src="/paperread/chatAI.jpg"
+                src={`${import.meta.env.BASE_URL}paperread/chatAI.jpg`}
                 alt={
                   lang === 'zh'
                     ? 'PaperRead AI 模型切換與原文對照問答介面'

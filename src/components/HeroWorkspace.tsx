@@ -43,7 +43,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'readingpage',
       labelZh: '雙語並排對照',
       labelEn: 'Bilingual Split View',
-      src: '/paperread/readingpage.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/readingpage.jpg`,
       captionZh:
         '譯文與英文原文同步對齊顯示，數學公式、引用編號與段落脈絡精準對應，點擊即可核對原文。',
       captionEn:
@@ -53,11 +53,21 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'pages',
       labelZh: 'PDF 原頁跟隨燈箱',
       labelEn: 'PDF Original-Page Lightbox',
-      src: '/paperread/pages.jpg',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_67d7923c.png`,
       captionZh:
         '右側即時跟隨顯示原始 PDF 頁面，隨時核對公式編號、表格數值與雙欄原始排版，避免誤讀。',
       captionEn:
         'Side-by-side original PDF page follower lets you verify equations, tables, and figures against the source.',
+    },
+    {
+      id: 'tabs-window',
+      labelZh: '多分頁閱讀工具列',
+      labelEn: 'Multi-Tab Reading Bar',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_96b440d9.png`,
+      captionZh:
+        '參考 Chrome 標籤頁設計，多篇論文自由切換並保留各自閱讀進度，亦可拖曳成獨立視窗並排比較。',
+      captionEn:
+        'Chrome-style paper tabs preserve each paper’s reading position and detach into independent comparison windows.',
     },
   ],
   kanban: [
@@ -65,7 +75,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'researchspace',
       labelZh: '閱讀看板與進度',
       labelEn: 'Reading Kanban Board',
-      src: '/paperread/researchspace.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/researchspace.jpg`,
       captionZh:
         '以「待閱讀」、「閱讀中」、「待整理」、「已完成」看板統整文獻進度，每篇論文清楚呈現閱讀百分比。',
       captionEn:
@@ -75,7 +85,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'route',
       labelZh: '閱讀路徑視覺化',
       labelEn: 'Visual Reading Path',
-      src: '/paperread/route.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/route.jpg`,
       captionZh:
         '從核心主題出發視覺化串聯前後代論文、引用關係與推薦理由，一鍵加入候選清單或閱讀看板。',
       captionEn:
@@ -87,7 +97,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'handwrite',
       labelZh: '手寫筆跡與筆記',
       labelEn: 'Freehand Ink & Notes',
-      src: '/paperread/handwrite.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/handwrite.jpg`,
       captionZh:
         '支援多色畫筆手寫標註、螢光重點、文字方塊與雙側邊欄閱讀筆記，完整保留閱讀當下的思考脈絡。',
       captionEn:
@@ -97,7 +107,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'sticker',
       labelZh: '貼紙素材與 AI 釋義',
       labelEn: 'Stickers & Inline AI',
-      src: '/paperread/sticker.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
       captionZh:
         '內建 Mega Doodles / Lucide / Feather 貼紙素材與套索群組拖曳，搭配側邊欄原文釋義整理。',
       captionEn:
@@ -109,7 +119,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'mindmap',
       labelZh: '論文結構心智圖',
       labelEn: 'Paper Structure Mindmap',
-      src: '/paperread/mindmap.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/mindmap.jpg`,
       captionZh:
         '自動梳理研究問題、核心方法、實驗基準與研究限制，點擊即可全覽整篇論文的邏輯骨幹。',
       captionEn:
@@ -119,7 +129,7 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       id: 'chatAI',
       labelZh: '原文錨定 AI 問答',
       labelEn: 'Source-Grounded Q&A',
-      src: '/paperread/chatAI.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/chatAI.jpg`,
       captionZh:
         '針對特定公式或段落提問時，自動附上對應章節出處與公式推導拆解，不脫離原文脈絡。',
       captionEn:
@@ -151,7 +161,7 @@ const ORBIT_NODES: OrbitNodeMeta[] = [
     subEn: 'OpenAlex · Kanban · Paths',
     detailZh: '串聯引用脈絡與閱讀看板，將龐雜文獻收斂為清晰的每日閱讀排程。',
     detailEn: 'Connect citation lineage and Kanban columns into a calm daily reading queue.',
-    thumb: '/paperread/route.jpg',
+    thumb: `${import.meta.env.BASE_URL}paperread/route.jpg`,
     tag: 'SQLite + OpenAlex',
   },
   {
@@ -163,7 +173,7 @@ const ORBIT_NODES: OrbitNodeMeta[] = [
     subEn: 'PDF Lightbox · Ink · Stickers',
     detailZh: '原文與譯文並排對照，結合手寫畫筆、貼紙素材與 Zotero 批次匯入。',
     detailEn: 'Verify bilingual prose beside original PDF pages with freehand ink & stickers.',
-    thumb: '/paperread/handwrite.jpg',
+    thumb: `${import.meta.env.BASE_URL}paperread/handwrite.jpg`,
     tag: 'PDF + Handwriting',
   },
   {
@@ -175,7 +185,7 @@ const ORBIT_NODES: OrbitNodeMeta[] = [
     subEn: 'Mindmap · Cross-Search',
     detailZh: '一鍵生成結構化心智圖，進行 2–5 篇論文比較與附帶頁碼的問答。',
     detailEn: 'Map paper structure into mindmaps and compare 2–5 papers with grounded Q&A.',
-    thumb: '/paperread/mindmap.jpg',
+    thumb: `${import.meta.env.BASE_URL}paperread/mindmap.jpg`,
     tag: 'Mindmap + Search',
   },
   {
@@ -187,7 +197,7 @@ const ORBIT_NODES: OrbitNodeMeta[] = [
     subEn: 'Obsidian · Markdown · JSON',
     detailZh: '自動建立雙向 [[WikiLinks]]，所有資產以開放格式保存在 ~/PaperRead。',
     detailEn: 'Export structured notes with [[WikiLinks]] in pure Markdown & JSON locally.',
-    thumb: '/paperread/readingnote.jpg',
+    thumb: `${import.meta.env.BASE_URL}paperread/readingnote.jpg`,
     tag: '[[WikiLinks]]',
   },
 ];
@@ -201,7 +211,7 @@ export function HeroWorkspace({
 }: HeroWorkspaceProps) {
   const [activeTab, setActiveTab] = useState<MockupTab>('bilingual');
   const [subIndex, setSubIndex] = useState<number>(0);
-  const [zoomOpen, setZoomOpen] = useState<boolean>(false);
+  const [zoomShot, setZoomShot] = useState<{ src: string; title: string } | null>(null);
 
   const [orbitIdx, setOrbitIdx] = useState<number>(0);
   const [orbitPaused, setOrbitPaused] = useState<boolean>(false);
@@ -225,13 +235,13 @@ export function HeroWorkspace({
   }, [orbitPaused]);
 
   useEffect(() => {
-    if (!zoomOpen) return;
+    if (!zoomShot) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setZoomOpen(false);
+      if (e.key === 'Escape') setZoomShot(null);
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [zoomOpen]);
+  }, [zoomShot]);
 
   const orbitIcons = [Compass, BookOpen, Sparkles, FolderGit2];
 
@@ -260,7 +270,7 @@ export function HeroWorkspace({
               className="font-code inline-flex items-center gap-2 text-xs font-semibold tracking-[0.12em] text-[var(--accent-amber)]"
             >
               <img
-                src="/paperread/paperread-mark.png"
+                src={`${import.meta.env.BASE_URL}paperread/paperread-mark.png`}
                 alt=""
                 aria-hidden="true"
                 className="h-5 w-5 object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
@@ -394,7 +404,7 @@ export function HeroWorkspace({
             <div className="mb-4 flex items-center justify-between border-b border-[var(--border-subtle)] pb-3">
               <div className="flex items-center gap-2">
                 <img
-                  src="/paperread/paperread-mark.png"
+                  src={`${import.meta.env.BASE_URL}paperread/paperread-mark.png`}
                   alt=""
                   aria-hidden="true"
                   className="h-5 w-5 object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
@@ -446,7 +456,7 @@ export function HeroWorkspace({
                   className="grid h-12 w-12 place-items-center rounded-full border border-[var(--accent-indigo)]/40 bg-[var(--bg-surface)] shadow-md"
                 >
                   <img
-                    src="/paperread/paperread-mark.png"
+                    src={`${import.meta.env.BASE_URL}paperread/paperread-mark.png`}
                     alt="PaperRead Hub"
                     className="h-7 w-7 object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
                   />
@@ -607,7 +617,12 @@ export function HeroWorkspace({
 
             <button
               type="button"
-              onClick={() => setZoomOpen(true)}
+              onClick={() =>
+                setZoomShot({
+                  src: currentShot.src,
+                  title: lang === 'zh' ? currentShot.labelZh : currentShot.labelEn,
+                })
+              }
               className="inline-flex items-center gap-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2.5 py-1 text-xs font-semibold text-[var(--text-secondary)] transition-colors hover:border-[var(--accent-indigo)] hover:text-[var(--text-primary)]"
             >
               <Maximize2 className="h-3.5 w-3.5" />
@@ -627,7 +642,12 @@ export function HeroWorkspace({
               >
                 <button
                   type="button"
-                  onClick={() => setZoomOpen(true)}
+                  onClick={() =>
+                    setZoomShot({
+                      src: currentShot.src,
+                      title: lang === 'zh' ? currentShot.labelZh : currentShot.labelEn,
+                    })
+                  }
                   className="group relative block w-full overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[#f6f3ec] text-left focus-visible:outline-2 focus-visible:outline-[var(--accent-indigo)]"
                   aria-label={
                     lang === 'zh' ? '點擊放大檢視 PaperRead 實際畫面' : 'Click to enlarge screenshot'
@@ -637,9 +657,107 @@ export function HeroWorkspace({
                     src={currentShot.src}
                     alt={lang === 'zh' ? currentShot.labelZh : currentShot.labelEn}
                     referrerPolicy="no-referrer"
-                    className="aspect-[16/9] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.006]"
+                    className="max-h-[600px] w-full bg-[#f6f3ec] object-contain object-top transition-transform duration-300 group-hover:scale-[1.004]"
                   />
                 </button>
+
+                {/* Chrome-Style Multi-Tab & Side-by-Side Window Highlight (Only shown on Multi-Tab Reading Bar) */}
+                {currentShot.id === 'tabs-window' && (
+                  <div className="mt-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-4 sm:p-5">
+                    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start">
+                      {/* Left: Cropped Tab Strip + Arrow Pointer + Explanation */}
+                      <div>
+                        <div className="relative aspect-[1280/106] w-full overflow-hidden rounded-lg border border-[var(--border-strong)] bg-[#f6f3ec] shadow-xs">
+                          <img
+                            src={`${import.meta.env.BASE_URL}assets/aistudio/image_96b440d9.png`}
+                            alt={
+                              lang === 'zh'
+                                ? 'PaperRead Chrome 風格多分頁標籤列裁切特寫'
+                                : 'PaperRead Chrome-style multi-tab bar closeup'
+                            }
+                            referrerPolicy="no-referrer"
+                            className="block h-auto w-full"
+                          />
+                          <div
+                            aria-hidden="true"
+                            className="pointer-events-none absolute top-[2%] right-[24%] left-[0.8%] h-[39%] rounded-md border-2 border-[var(--accent-amber)] bg-[var(--accent-amber)]/8"
+                          />
+                        </div>
+
+                        <div className="mt-1.5 flex items-center gap-2 pl-4 sm:pl-8">
+                          <svg
+                            aria-hidden="true"
+                            viewBox="0 0 36 28"
+                            className="h-6 w-8 shrink-0 text-[var(--accent-amber)]"
+                            fill="none"
+                          >
+                            <path
+                              d="M28 24 C 14 23, 10 15, 10 4"
+                              stroke="currentColor"
+                              strokeWidth="2.2"
+                              strokeLinecap="round"
+                            />
+                            <path
+                              d="M5.5 9.5 L10 3.5 L14.5 9.5"
+                              stroke="currentColor"
+                              strokeWidth="2.2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          <span className="font-code text-[11px] font-semibold text-[var(--accent-amber)]">
+                            {lang === 'zh'
+                              ? 'Chrome 風格標籤頁 · 自由切換保留進度'
+                              : 'Chrome-Style Tabs · Keep Each Paper Position'}
+                          </span>
+                        </div>
+
+                        <p className="mt-2.5 text-xs leading-relaxed text-[var(--text-secondary)]">
+                          {lang === 'zh'
+                            ? '考量閱讀論文時常需來回比較不同研究的方法與結果，參考 Chrome 標籤頁設計，讓多篇論文自由切換並各自保留閱讀位置，隨時接續上次進度。'
+                            : 'Inspired by Chrome tabs, switch effortlessly between papers while preserving each paper’s scroll and reading progress.'}
+                        </p>
+                      </div>
+
+                      {/* Right: Dragged Detached Window Side-by-Side Comparison Demo */}
+                      <div>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setZoomShot({
+                              src: `${import.meta.env.BASE_URL}assets/aistudio/image_b423a164.png`,
+                              title:
+                                lang === 'zh'
+                                  ? '拖曳標籤頁成獨立視窗 · 左右並排比較兩篇論文'
+                                  : 'Dragged Independent Windows · Side-by-Side Comparison',
+                            })
+                          }
+                          className="group relative block w-full overflow-hidden rounded-lg border border-[var(--border-strong)] bg-[#f6f3ec] text-left focus-visible:outline-2 focus-visible:outline-[var(--accent-indigo)]"
+                        >
+                          <img
+                            src={`${import.meta.env.BASE_URL}assets/aistudio/image_b423a164.png`}
+                            alt={
+                              lang === 'zh'
+                                ? '將標籤頁拖曳成獨立視窗，左右並排比較兩篇論文實機畫面'
+                                : 'Detached independent PaperRead windows comparing two papers side by side'
+                            }
+                            referrerPolicy="no-referrer"
+                            className="aspect-[16/9] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.01]"
+                          />
+                        </button>
+
+                        <p className="mt-2.5 text-xs leading-relaxed text-[var(--text-secondary)]">
+                          <span className="font-semibold text-[var(--text-primary)]">
+                            {lang === 'zh' ? '拖曳成獨立視窗並排比較 · ' : 'Detach & Compare Side-by-Side · '}
+                          </span>
+                          {lang === 'zh'
+                            ? '直接將標籤頁拖曳成獨立視窗，左右並排比較兩篇論文的研究方法與實驗結果，實現更進階的分析與頁面操作。'
+                            : 'Drag any tab out into its own independent window to compare two papers side by side for deeper cross-analysis.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-2 px-1 text-xs">
                   <p className="text-[var(--text-secondary)]">
@@ -660,10 +778,10 @@ export function HeroWorkspace({
       </div>
 
       {/* Fullscreen Lightbox Modal for Real Demo Image */}
-      {zoomOpen && (
+      {zoomShot && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs"
-          onClick={() => setZoomOpen(false)}
+          onClick={() => setZoomShot(null)}
           role="dialog"
           aria-modal="true"
         >
@@ -672,12 +790,10 @@ export function HeroWorkspace({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-5 py-3">
-              <div className="text-sm font-bold text-[var(--text-primary)]">
-                {lang === 'zh' ? currentShot.labelZh : currentShot.labelEn}
-              </div>
+              <div className="text-sm font-bold text-[var(--text-primary)]">{zoomShot.title}</div>
               <button
                 type="button"
-                onClick={() => setZoomOpen(false)}
+                onClick={() => setZoomShot(null)}
                 aria-label="Close lightbox"
                 className="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:bg-[var(--bg-surface-2)] hover:text-[var(--text-primary)]"
               >
@@ -686,8 +802,8 @@ export function HeroWorkspace({
             </div>
             <div className="max-h-[82vh] overflow-auto bg-[#f6f3ec] p-2">
               <img
-                src={currentShot.src}
-                alt={lang === 'zh' ? currentShot.labelZh : currentShot.labelEn}
+                src={zoomShot.src}
+                alt={zoomShot.title}
                 referrerPolicy="no-referrer"
                 className="mx-auto h-auto max-w-full rounded-lg"
               />

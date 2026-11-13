@@ -57,7 +57,7 @@ export function Navbar({
           className="flex shrink-0 items-center gap-2.5 whitespace-nowrap font-bold tracking-tight text-[var(--text-primary)]"
         >
           <img
-            src="/paperread/paperread-mark.png"
+            src={`${import.meta.env.BASE_URL}paperread/paperread-mark.png`}
             alt="PaperRead"
             className="h-7 w-7 shrink-0 object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
           />

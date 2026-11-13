@@ -15,7 +15,7 @@ export function Footer({ t }: FooterProps) {
           <div>
             <div className="flex items-center gap-2.5 font-bold text-[var(--text-primary)]">
               <img
-                src="/paperread/paperread-mark.png"
+                src={`${import.meta.env.BASE_URL}paperread/paperread-mark.png`}
                 alt="PaperRead"
                 className="h-7 w-7 shrink-0 object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
               />

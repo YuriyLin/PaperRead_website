@@ -62,7 +62,7 @@ export function WhyPaperRead({ t }: WhyPaperReadProps) {
 
                 <div className="mt-6 space-y-3 border-t border-[var(--border-subtle)] pt-5 text-xs leading-relaxed">
                   <div>
-                    <span className="font-semibold text-rose-600 dark:text-rose-400">
+                    <span className="font-semibold text-[#9E5A5A] dark:text-[#C88A8A]">
                       {t.painLabel} ·{' '}
                     </span>
                     <span className="text-[var(--text-muted)]">{card.pain}</span>

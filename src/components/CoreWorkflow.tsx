@@ -16,68 +16,68 @@ const STAGE_FEATURE_DEMOS: Record<
 > = {
   '01': [
     {
-      src: '/paperread/papersearch.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/papersearch.jpg`,
       captionZh: '研究探索：以 OpenAlex 搜尋主題、會議期刊（ICCV、ECCV、CVPR 等）與公開 PDF',
       captionEn: 'OpenAlex literature search across topics, venues, and open-access PDFs',
     },
     {
-      src: '/paperread/researchspace.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/researchspace.jpg`,
       captionZh: '閱讀看板：以待閱讀、閱讀中、待整理與已完成欄位追蹤閱讀進度（SQLite 儲存）',
       captionEn: 'Reading Kanban tracks candidate triage and completion percentages in SQLite',
     },
     {
-      src: '/paperread/route.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/route.jpg`,
       captionZh: '漸進式閱讀路徑：串聯引用關係與建議閱讀順序，並附推薦理由',
       captionEn: 'Progressive reading path connects citation chains and recommended reading order',
     },
   ],
   '02': [
     {
-      src: '/paperread/readingpage.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/readingpage.jpg`,
       captionZh: '雙語閱讀與 PDF 原頁並排：譯文、原文、公式與圖表同步對齊，隨時核對原始脈絡',
       captionEn: 'Bilingual split reader aligning translated prose, equations, and original PDF pages',
     },
     {
-      src: '/paperread/sticker.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
       captionZh: '雙語對照與貼紙標註：內建貼紙素材、段落劃線與 AI 原文釋義整理',
       captionEn: 'Bilingual annotations with built-in stickers and inline AI explanations',
     },
     {
-      src: '/paperread/handwrite.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/handwrite.jpg`,
       captionZh: '自由手寫與筆記：支援滑鼠手寫、筆寬／顏色切換、橡皮擦、復原重做與雙側邊欄筆記',
       captionEn: 'Freehand ink annotations with width/color controls, eraser, and margin notes',
     },
     {
-      src: '/paperread/readingnote.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/readingnote.jpg`,
       captionZh: '筆記工作區與 Zotero 匯入：支援預覽與 Markdown 雙模式整理及批次文獻匯入',
       captionEn: 'Preview and Markdown reading notes workspace with Zotero batch import',
     },
   ],
   '03': [
     {
-      src: '/paperread/keywordsearch.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/keywordsearch.jpg`,
       captionZh: '跨論文關鍵字搜尋：同時比對多篇論文原文與譯文片段，一鍵定位回原始段落',
       captionEn: 'Cross-paper bilingual keyword search jumping directly to matched paragraphs',
     },
     {
-      src: '/paperread/chatAI.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/chatAI.jpg`,
       captionZh: '深度剖析與 2–5 篇比較：保留章節與公式出處連結，協助回到原文核對',
       captionEn: 'Deep breakdown and 2–5 paper comparison anchored to original sections',
     },
     {
-      src: '/paperread/mindmap.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/mindmap.jpg`,
       captionZh: '論文結構心智圖：自動將研究動機、方法、實驗與限制梳理為互動心智圖',
       captionEn: 'Interactive structural mindmap organizing motivation, method, and results',
     },
   ],
   '04': [
     {
-      src: '/paperread/readingnote.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/readingnote.jpg`,
       captionZh: '結構化筆記與 Markmap 整理：一鍵匯出為 Obsidian 雙向連結格式',
       captionEn: 'Structured notes and Markmap summaries ready for Obsidian WikiLinks export',
     },
     {
-      src: '/paperread/sticker.jpg',
+      src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
       captionZh: '開放格式保存：所有貼紙、標註座標與 AI 解析皆保存於本機 JSON 與 Markdown',
       captionEn: 'Open JSON and Markdown persistence for long-term local backup and portability',
     },
