@@ -114,8 +114,8 @@ export function InstallGuide({
                 </h3>
                 <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
                   {lang === 'zh'
-                    ? '從 GitHub Releases 下載 PaperRead-Setup-1.5.2.exe 安裝程式，雙擊執行精靈即可完成本機安裝並建立桌面捷徑。'
-                    : 'Download PaperRead-Setup-1.5.2.exe from GitHub Releases and run the setup wizard to install PaperRead locally.'}
+                    ? '從 GitHub Releases 下載 PaperRead-Setup-1.5.3.exe 安裝程式，雙擊執行精靈即可完成本機安裝並建立桌面捷徑。'
+                    : 'Download PaperRead-Setup-1.5.3.exe from GitHub Releases and run the setup wizard to install PaperRead locally.'}
                 </p>
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <a
@@ -126,8 +126,8 @@ export function InstallGuide({
                   >
                     <span>
                       {lang === 'zh'
-                        ? '下載 Windows Setup (v1.5.2)'
-                        : 'Download Windows Setup (v1.5.2)'}
+                        ? '下載 Windows Setup (v1.5.3)'
+                        : 'Download Windows Setup (v1.5.3)'}
                     </span>
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
@@ -147,8 +147,8 @@ export function InstallGuide({
                 </h3>
                 <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
                   {lang === 'zh'
-                    ? '下載 arm64 DMG 映像檔（PaperRead-1.5.2-arm64.dmg），開啟後將 PaperRead.app 拖曳至 Applications 資料夾即可啟動。'
-                    : 'Download the arm64 DMG image, open it, and drag PaperRead.app into your Applications folder.'}
+                    ? '下載 arm64 DMG 映像檔（PaperRead-1.5.3-arm64.dmg），開啟後將 PaperRead.app 拖曳至 Applications 資料夾即可啟動。'
+                    : 'Download the arm64 DMG image (PaperRead-1.5.3-arm64.dmg), open it, and drag PaperRead.app into your Applications folder.'}
                 </p>
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <a
@@ -159,8 +159,8 @@ export function InstallGuide({
                   >
                     <span>
                       {lang === 'zh'
-                        ? '下載 macOS arm64 DMG (v1.5.2)'
-                        : 'Download macOS arm64 DMG (v1.5.2)'}
+                        ? '下載 macOS arm64 DMG (v1.5.3)'
+                        : 'Download macOS arm64 DMG (v1.5.3)'}
                     </span>
                     <ArrowUpRight className="h-4 w-4" />
                   </a>

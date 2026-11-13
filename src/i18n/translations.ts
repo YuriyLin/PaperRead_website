@@ -187,12 +187,12 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       langSwitchLabel: '繁 / EN',
     },
     hero: {
-      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.2',
+      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.3',
       brandSuffix: 'AI 學術研究與論文閱讀工作區',
       headline: '從文獻探索、論文閱讀到知識整理的個人研究工作區',
       subtitle:
         '建立於 EasyRead 之上持續開源開發，將 OpenAlex 文獻探索、看板排程、雙語原頁對照、手寫貼紙註記與 Obsidian 知識庫整合進同一個本機工作區。',
-      ctaDesktop: '下載桌面版 (v1.5.2)',
+      ctaDesktop: '下載桌面版 (v1.5.3)',
       ctaDocker: 'Docker 快速部署',
       ctaGithub: '瀏覽 GitHub',
       workspaceLabel: '~/PaperRead · Local Workspace',
@@ -286,23 +286,24 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           shortDesc: '雙開對照、手寫、貼紙、Zotero',
           heading: '將個人標註與思考痕跡保留在可回溯的原文脈絡',
           lead: '支援資料夾與 Zotero 文獻庫批次匯入，在多分頁雙開與原頁燈箱中自由手寫、貼紙並整理 Markdown 筆記。',
-          versionNote: '版本對應｜v1.5.1：滑鼠手寫、Zotero／資料夾匯入；v1.5.2：筆記工作區、多分頁與視覺標註擴充',
+          versionNote:
+            '版本對應｜v1.5.1：滑鼠手寫、Zotero／資料夾匯入；v1.5.2：多分頁與貼紙；v1.5.3：續譯斷落歸併、原頁圖表燈箱縮放與全螢幕雙開筆記',
           features: [
             {
               title: '多分頁與原頁並排雙開',
-              desc: '支援瀏覽器式多分頁切換不同論文，並可並排顯示譯文與 PDF 原頁，即時核對公式與版面細節。',
+              desc: '支援 Chrome 風格多分頁切換與拖曳獨立雙視窗對比，並可並排顯示譯文與 PDF 原頁即時核對公式細節。',
             },
             {
-              title: '雙語閱讀與原頁燈箱',
-              desc: '原文、譯文、數學公式與圖表精準對齊，點擊段落隨時喚出原頁燈箱確認細節，杜絕 AI 誤讀。',
+              title: '雙語閱讀、交叉跳轉與原頁燈箱',
+              desc: '保留 PDF 粗斜體與公式排版，支援圖表、章節與參考文獻交叉跳轉，點擊放大鏡全螢幕縮放檢視原頁圖表。',
             },
             {
               title: '手寫、貼紙與套索群組',
               desc: '支援滑鼠／觸控手寫、筆寬與顏色切換、橡皮擦復原重做，以及內建貼紙素材、文字方塊與套索群組移動。',
             },
             {
-              title: '閱讀筆記與 Zotero 匯入',
-              desc: '支援 Rich Text 預覽與 Markdown 雙模式筆記，並可從 Zotero 文獻庫或本機資料夾批次匯入論文。',
+              title: '全螢幕筆記與 Zotero 匯入',
+              desc: '支援全螢幕雙開並排、游標精準引用與 Markdown 筆記，支援匯出 XMind／SVG 及 Zotero 批次匯入。',
             },
           ],
         },
@@ -312,20 +313,21 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           title: '深度剖析與連結',
           shortDesc: '跨論文檢索、2–5 篇比較、心智圖',
           heading: '從單篇理解延伸到跨論文比較，並回到原文核對',
-          lead: '提供跨論文原文／譯文檢索、多篇研究多維度比較、互動式結構心智圖與原文錨定問答。',
-          versionNote: '版本對應｜v1.5.2：深度技術剖析、互動心智圖（Markmap / Mind-Elixir）與 2–5 篇論文比較',
+          lead: '提供跨論文 KaTeX 公式檢索、長文分桶深度剖析、Mind-Elixir 互動心智圖與支援附加檔案的問 AI。',
+          versionNote:
+            '版本對應｜v1.5.2：技術剖析與 2–5 篇比較；v1.5.3：Mind-Elixir 引擎、統一任務監控、問 AI 附加文件與長文防截斷',
           features: [
             {
-              title: '跨論文檢索',
-              desc: '同時檢索文獻庫中多篇論文的原文與譯文片段，點擊結果直接定位回原始頁碼與段落脈絡。',
+              title: '跨論文 KaTeX 雙欄檢索',
+              desc: '同時檢索多篇論文的英文原文與譯文，術語自動推導補齊並支援 KaTeX 公式高亮與一鍵定位原段落。',
             },
             {
-              title: '深度剖析與多維度比較',
-              desc: '支援技術細節拆解與 2–5 篇論文的橫向比較，系統化檢視研究方法、證據、實驗條件與研究限制。',
+              title: '長文深度剖析與多維度比較',
+              desc: '依章節比例分桶抽取避免長文截斷，支援 2–5 篇橫向比較並附原文依據標記直達閱讀器段落。',
             },
             {
-              title: '論文心智圖與 AI 問答',
-              desc: '自動梳理研究動機、方法、實驗與限制的互動心智圖，並針對特定公式或段落提問取得原文出處。',
+              title: 'Mind-Elixir 心智圖與附加文件問答',
+              desc: '依翻譯目標語言動態生成互動心智圖；問 AI 支援附加 PDF／TXT／Markdown 文件輔助深入分析。',
             },
           ],
         },
@@ -333,10 +335,11 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '04',
           code: '04 · Build Knowledge Base',
           title: '建構長期知識庫',
-          shortDesc: 'Obsidian WikiLinks 與開放格式',
+          shortDesc: 'Obsidian WikiLinks 與離線預渲染',
           heading: '將閱讀成果轉為可保存、可遷移的長期研究資產',
-          lead: '把摘要、分析、貼紙標註與研究筆記匯出為純淨的 Markdown 與 JSON，自然銜接 Obsidian 知識網絡。',
-          versionNote: '開放格式原則｜採用標準 Markdown、JSON 與 SQLite，完全支援 Git 備份與二次開發',
+          lead: '把摘要、深度剖析、貼紙標註、心智圖與研究筆記匯出為 Markdown、JSON、XMind／SVG 與離線 HTML。',
+          versionNote:
+            '開放格式原則｜v1.5.3 支援 Obsidian 03-閱讀標註分類歸檔與離線 KaTeX 預渲染，完全相容 Git 備份與二次開發',
           features: [
             {
               title: 'Obsidian 結構化匯出',
@@ -406,7 +409,13 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
         { date: '10/11', version: 'v1.4.4–6', summary: '智慧標註、Docker / CI' },
         { date: '10/21', version: 'v1.5.0', summary: '互動閱讀路徑、Issue 修復' },
         { date: '10/26', version: 'v1.5.1', summary: 'Zotero 匯入、手寫標註' },
-        { date: '目前正式版', version: 'v1.5.2', summary: '筆記工作區、心智圖、深度分析', current: true },
+        { date: '11/02', version: 'v1.5.2', summary: '貼紙、分頁雙開、深度剖析' },
+        {
+          date: '目前正式版',
+          version: 'v1.5.3',
+          summary: '續譯節流、全螢幕筆記、統一任務監控與多語系',
+          current: true,
+        },
       ],
       issuesTitle: '可驗證的社群問題修復案例',
       issues: [
@@ -451,7 +460,8 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     install: {
       eyebrow: 'INSTALLATION & QUICK START',
       title: '多平台安裝與快速上手導覽',
-      descPrefix: '目前最新正式發布版本為 v1.5.2（v1.5.3 開發中）。支援桌面端一鍵安裝與 Docker 自架瀏覽器版。',
+      descPrefix:
+        '目前最新正式發布版本為 v1.5.3。支援桌面端一鍵安裝、應用內自動檢查更新與 Docker 自架瀏覽器版。',
       detectedPrefix: '已自動偵測您的環境：',
       copyBtn: '複製指令',
       copiedBtn: '已複製',
@@ -514,12 +524,12 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       langSwitchLabel: 'EN / 繁',
     },
     hero: {
-      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.2',
+      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.3',
       brandSuffix: 'AI Academic Research & Paper Reading Workspace',
       headline: 'A Local-First Personal Research Workspace from Discovery to Knowledge',
       subtitle:
         'Built upon EasyRead, unifying OpenAlex literature search, reading Kanban, bilingual original-page alignment, ink & sticker annotations, and Obsidian export in one local workspace.',
-      ctaDesktop: 'Download Desktop (v1.5.2)',
+      ctaDesktop: 'Download Desktop (v1.5.3)',
       ctaDocker: 'Docker Quick Deploy',
       ctaGithub: 'Browse GitHub',
       workspaceLabel: '~/PaperRead · Local Workspace',
@@ -613,23 +623,24 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           shortDesc: 'Split-view, Ink, Stickers, Zotero',
           heading: 'Keep personal annotations anchored to traceable source context',
           lead: 'Batch import from folders or Zotero, read side-by-side with the PDF original page, and annotate freely.',
-          versionNote: 'Releases | v1.5.1: Handwriting & Zotero/Folder Import; v1.5.2: Notes Workspace & Multi-Tab',
+          versionNote:
+            'Releases | v1.5.2: Tabs & Stickers; v1.5.3: Resume Translation, Fullscreen Split Notes, XMind/SVG & High-Res Figure Lightbox',
           features: [
             {
-              title: 'Multi-Tab & Original-Page Split View',
-              desc: 'Switch tabs across papers and view translated prose side-by-side with the synchronized PDF page.',
+              title: 'Chrome-Style Tabs & Detached Split Windows',
+              desc: 'Switch tabs seamlessly or drag tabs into side-by-side windows beside synchronized original PDF pages.',
             },
             {
-              title: 'Bilingual Reader & PDF Lightbox',
-              desc: 'Align original text, translations, equations, and figures—with one-click original-page inspection.',
+              title: 'Bilingual Reader, Cross-Refs & Figure Lightbox',
+              desc: 'Preserve bold/italic styling, jump across figure/equation cross-references, and zoom high-res figures cleanly.',
             },
             {
               title: 'Handwriting, Stickers & Lasso Group',
               desc: 'Mouse/stylus ink with width, color, eraser, undo/redo, built-in sticker packs, and lasso group dragging.',
             },
             {
-              title: 'Reading Notes & Zotero Import',
-              desc: 'Rich preview and Markdown note workspace plus batch import from Zotero libraries or local folders.',
+              title: 'Fullscreen Notes & Zotero Import',
+              desc: 'Fullscreen split Markdown workspace with cursor citations, XMind/SVG export, and Zotero batch import.',
             },
           ],
         },
@@ -639,20 +650,21 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           title: 'Analyze & Connect',
           shortDesc: 'Cross-Paper Search, Compare, Mindmap',
           heading: 'Move from single-paper reading to cross-paper synthesis',
-          lead: 'Query across original and translated libraries, compare 2–5 papers, and explore interactive mindmaps.',
-          versionNote: 'Releases | v1.5.2: Deep Technical Breakdown, Interactive Mindmaps & 2–5 Paper Comparison',
+          lead: 'Query bilingual KaTeX corpora, run bucketed long-paper audits, explore Mind-Elixir mindmaps, and attach files to Ask AI.',
+          versionNote:
+            'Releases | v1.5.2: Deep Audit & 2–5 Paper Compare; v1.5.3: Mind-Elixir, Unified Job Monitor, File Attachments & Anti-Truncation',
           features: [
             {
-              title: 'Cross-Paper Search',
-              desc: 'Search both English and translated corpora simultaneously and jump straight to the exact matched paragraph.',
+              title: 'Cross-Paper KaTeX Search',
+              desc: 'Search both English and translated corpora with terminology inference, KaTeX rendering, and instant paragraph jump.',
             },
             {
               title: 'Deep Analysis & 2–5 Paper Comparison',
-              desc: 'Examine methods, empirical evidence, experimental setups, and limitations side-by-side across 2–5 papers.',
+              desc: 'Section-bucketed long-paper analysis prevents truncation; compare 2–5 papers with clickable source citations.',
             },
             {
-              title: 'Mindmap & Grounded Q&A',
-              desc: 'Auto-structure paper logic into interactive mindmaps and ask equation/section-grounded AI questions.',
+              title: 'Mind-Elixir Mindmap & File-Attached Q&A',
+              desc: 'Interactive mindmaps in target language plus Ask AI supporting attached PDF, TXT, and Markdown files.',
             },
           ],
         },
@@ -660,10 +672,11 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '04',
           code: '04 · Build Knowledge Base',
           title: 'Build Your Knowledge Base',
-          shortDesc: 'Obsidian WikiLinks & Open Files',
+          shortDesc: 'Obsidian WikiLinks & Offline KaTeX',
           heading: 'Turn deep reading into durable, portable research assets',
-          lead: 'Export structured summaries, page citations, and user notes into clean Markdown and JSON.',
-          versionNote: 'Open Format | Standard Markdown, JSON & SQLite ready for Git backup and external tooling',
+          lead: 'Export structured summaries, audits, mindmaps, and user notes into clean Markdown, JSON, XMind/SVG, and offline HTML.',
+          versionNote:
+            'Open Format | v1.5.3 adds categorized Obsidian annotation folders and pre-rendered offline KaTeX HTML for full portability',
           features: [
             {
               title: 'Obsidian Export',
@@ -733,7 +746,13 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
         { date: '10/11', version: 'v1.4.4–6', summary: 'Smart Notes, Docker / CI' },
         { date: '10/21', version: 'v1.5.0', summary: 'Reading Path & Fixes' },
         { date: '10/26', version: 'v1.5.1', summary: 'Zotero Import & Ink' },
-        { date: 'Current', version: 'v1.5.2', summary: 'Notes Workspace & Mindmap', current: true },
+        { date: '11/02', version: 'v1.5.2', summary: 'Stickers, Multi-Tab & Audit' },
+        {
+          date: 'Current',
+          version: 'v1.5.3',
+          summary: 'Resume Translation, Fullscreen Notes & Unified Jobs',
+          current: true,
+        },
       ],
       issuesTitle: 'Verifiable Community Issue Fixes',
       issues: [
@@ -778,7 +797,8 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     install: {
       eyebrow: 'INSTALLATION & QUICK START',
       title: 'Cross-Platform Desktop & Self-Hosted Docker Setup',
-      descPrefix: 'Latest stable release: v1.5.2 (v1.5.3 in development). Available for Windows, macOS, Linux, and Docker.',
+      descPrefix:
+        'Latest stable release: v1.5.3. Available for Windows, macOS, Linux, and Docker with built-in update notifications.',
       detectedPrefix: 'Detected OS:',
       copyBtn: 'Copy Command',
       copiedBtn: 'Copied',

@@ -79,7 +79,7 @@ export function EngineeringMilestones({ t }: EngineeringMilestonesProps) {
           <div className="mb-3 text-xs font-semibold text-[var(--accent-amber)]">
             {t.milestonesLabel}
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {t.milestones.map((m) => (
               <div
                 key={m.version}

@@ -48,10 +48,10 @@ const STAGE_FEATURE_DEMOS: Record<
       captionEn: 'Bilingual annotations with built-in stickers and inline AI explanations',
     },
     {
-      src: `${import.meta.env.BASE_URL}paperread/handwrite.jpg`,
+      src: `${import.meta.env.BASE_URL}assets/aistudio/handwrite_sticker_32fe6077.png`,
       srcEn: `${import.meta.env.BASE_URL}assets/aistudio/handwrite_sticker_32fe6077.png`,
-      captionZh: '自由手寫與筆記：支援滑鼠手寫、筆寬／顏色切換、橡皮擦、復原重做與雙側邊欄筆記',
-      captionEn: 'Freehand ink annotations with width/color controls, eraser, and margin notes',
+      captionZh: '手寫、貼紙與視覺標註：支援多色畫筆手寫、內建貼紙素材、螢光重點與側邊欄筆記',
+      captionEn: 'Handwriting, stickers & margin highlights with multi-color ink and built-in sticker packs',
     },
     {
       src: `${import.meta.env.BASE_URL}paperread/readingnote.jpg`,

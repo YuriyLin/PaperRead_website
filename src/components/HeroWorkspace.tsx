@@ -783,7 +783,7 @@ export function HeroWorkspace({
                     <span>{lang === 'zh' ? currentShot.captionZh : currentShot.captionEn}</span>
                   </p>
                   <span className="font-code text-[11px] text-[var(--text-muted)]">
-                    PaperRead v1.5.2 · Real UI
+                    PaperRead v1.5.3 · Real UI
                   </span>
                 </div>
               </motion.div>
