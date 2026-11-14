@@ -36,16 +36,15 @@ const STAGE_FEATURE_DEMOS: Record<
   ],
   '02': [
     {
-      src: `${import.meta.env.BASE_URL}paperread/readingpage.jpg`,
-      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/readingpage_0e301299.png`,
-      captionZh: '雙語閱讀與 PDF 原頁並排：譯文、原文、公式與圖表同步對齊，隨時核對原始脈絡',
-      captionEn: 'Bilingual split reader aligning translated prose, equations, and original PDF pages',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_96b440d9.png`,
+      captionZh: 'Chrome 風格多分頁標籤列：自由切換多篇論文並保留各自閱讀進度，亦可拖曳成獨立視窗並排比較',
+      captionEn: 'Chrome-style multi-tab bar: switch open papers seamlessly while preserving scroll progress or detach to compare',
     },
     {
-      src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
-      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/notation_9a7b31c8.png`,
-      captionZh: '雙語對照與貼紙標註：內建貼紙素材、段落劃線與 AI 原文釋義整理',
-      captionEn: 'Bilingual annotations with built-in stickers and inline AI explanations',
+      src: `${import.meta.env.BASE_URL}paperread/readingpage.jpg`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/readingpage_0e301299.png`,
+      captionZh: '雙語對照與原文核對：左側譯文與右側英文原文同步對齊，保留公式、粗斜體與交叉引用雙向跳轉',
+      captionEn: 'Bilingual split reader aligning translated prose and original English text with formula & cross-ref jumps',
     },
     {
       src: `${import.meta.env.BASE_URL}assets/aistudio/handwrite_sticker_32fe6077.png`,
@@ -54,9 +53,9 @@ const STAGE_FEATURE_DEMOS: Record<
       captionEn: 'Handwriting, stickers & margin highlights with multi-color ink and built-in sticker packs',
     },
     {
-      src: `${import.meta.env.BASE_URL}paperread/readingnote.jpg`,
-      captionZh: '筆記工作區與 Zotero 匯入：支援預覽與 Markdown 雙模式整理及批次文獻匯入',
-      captionEn: 'Preview and Markdown reading notes workspace with Zotero batch import',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_1e761dc0.png`,
+      captionZh: '匯入論文與 Zotero 單向同步：支援資料夾／Zotero 遷移與本機資料夾單向 PDF 同步（保留既有筆記與進度）',
+      captionEn: 'Paper import & Zotero one-way folder sync preserving existing notes and reading progress',
     },
   ],
   '03': [
@@ -66,29 +65,27 @@ const STAGE_FEATURE_DEMOS: Record<
       captionEn: 'Cross-paper bilingual keyword search jumping directly to matched paragraphs',
     },
     {
-      src: `${import.meta.env.BASE_URL}paperread/chatAI.jpg`,
-      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/askAI_918778f6.png`,
-      captionZh: '深度剖析與 2–5 篇比較：保留章節與公式出處連結，協助回到原文核對',
-      captionEn: 'Deep breakdown and 2–5 paper comparison anchored to original sections',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_9878a0d8.png`,
+      captionZh: '論文深度剖析報告：長文比例分桶防截斷，呈現實證判定、支持證據、問題分析與 Markdown 複製',
+      captionEn: 'Deep Paper Audit report with bucketed anti-truncation extraction, evidence verdicts, and Markdown export',
     },
     {
-      src: `${import.meta.env.BASE_URL}paperread/mindmap.jpg`,
-      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/mindmap_28437af2.png`,
-      captionZh: '論文結構心智圖：自動將研究動機、方法、實驗與限制梳理為互動心智圖',
-      captionEn: 'Interactive structural mindmap organizing motivation, method, and results',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_79231da5.png`,
+      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/askAI_918778f6.png`,
+      captionZh: '附加文件問 AI 與邊讀邊問：支援附加圖表、PDF、TXT／MD 文件與自適應語言簡明回答',
+      captionEn: 'File-attached Ask AI supporting figures, PDF, TXT/MD documents and target-language concise replies',
     },
   ],
   '04': [
     {
-      src: `${import.meta.env.BASE_URL}paperread/readingnote.jpg`,
-      captionZh: '結構化筆記與 Markmap 整理：一鍵匯出為 Obsidian 雙向連結格式',
-      captionEn: 'Structured notes and Markmap summaries ready for Obsidian WikiLinks export',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_d82a14bb.png`,
+      captionZh: '論文筆記、Markmap 與多格式匯出：雙開預覽搭配心智圖展開收合，支援 Obsidian、XMind 與 SVG 匯出',
+      captionEn: 'Split notes & Markmap workspace with expand/collapse controls and Obsidian, XMind & SVG export',
     },
     {
-      src: `${import.meta.env.BASE_URL}paperread/sticker.jpg`,
-      srcEn: `${import.meta.env.BASE_URL}assets/aistudio/notation_9a7b31c8.png`,
-      captionZh: '開放格式保存：所有貼紙、標註座標與 AI 解析皆保存於本機 JSON 與 Markdown',
-      captionEn: 'Open JSON and Markdown persistence for long-term local backup and portability',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_a6a27ccb.png`,
+      captionZh: '離線預渲染與開放格式匯出：支援匯出完整離線 HTML 與輕量手機版（預先編譯 KaTeX，相容 iOS 檔案 App）',
+      captionEn: 'Pre-compiled offline HTML & compact mobile export (compatible with iOS Files) alongside open local storage',
     },
   ],
 };
@@ -329,6 +326,54 @@ status: archived
                 </div>
               ) : (
                 <>
+                  {activeStepId === '02' && featureIndex === 0 && (
+                    <div className="mb-3 rounded-xl border border-[var(--accent-amber)]/40 bg-[var(--bg-surface)] p-3">
+                      <div className="relative aspect-[1280/54] w-full overflow-hidden rounded-lg border border-[var(--border-strong)] bg-[#f6f3ec] shadow-xs">
+                        <img
+                          src={`${import.meta.env.BASE_URL}assets/aistudio/image_96b440d9.png`}
+                          alt={
+                            lang === 'zh'
+                              ? '擷取自閱讀頁的 Chrome 風格多分頁標籤列'
+                              : 'Cropped Chrome-style multi-tab bar from PaperRead reader'
+                          }
+                          referrerPolicy="no-referrer"
+                          className="block h-auto w-full object-cover object-top"
+                        />
+                        <div
+                          aria-hidden="true"
+                          className="pointer-events-none absolute top-[6%] right-[24%] bottom-[6%] left-[0.8%] rounded border-2 border-[var(--accent-amber)] bg-[var(--accent-amber)]/10"
+                        />
+                      </div>
+                      <div className="mt-2 flex items-center gap-2 pl-3 sm:pl-6">
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 36 28"
+                          className="h-5 w-7 shrink-0 text-[var(--accent-amber)]"
+                          fill="none"
+                        >
+                          <path
+                            d="M28 24 C 14 23, 10 15, 10 4"
+                            stroke="currentColor"
+                            strokeWidth="2.2"
+                            strokeLinecap="round"
+                          />
+                          <path
+                            d="M5.5 9.5 L10 3.5 L14.5 9.5"
+                            stroke="currentColor"
+                            strokeWidth="2.2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span className="font-code text-[11px] font-semibold text-[var(--accent-amber)]">
+                          {lang === 'zh'
+                            ? '擷取重點｜Chrome 風格標籤列 · 切換論文不遺失閱讀進度'
+                            : 'Tab Bar Highlight · Chrome-style tabs keep each paper’s progress'}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
                   <button
                     type="button"
                     onClick={() =>

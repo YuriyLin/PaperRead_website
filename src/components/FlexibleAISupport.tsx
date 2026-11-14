@@ -1,11 +1,28 @@
 import { useState } from 'react';
-import { ShieldOff, Terminal, Cloud, Cpu } from 'lucide-react';
+import { ShieldOff, Terminal, Cloud, Cpu, Plus, ChevronDown, ExternalLink } from 'lucide-react';
 import { Lang, Translations } from '../i18n/translations';
 
 interface FlexibleAISupportProps {
   lang: Lang;
   t: Translations['ai'];
 }
+
+interface DemoModelCard {
+  id: string;
+  name: string;
+  provider: string;
+  mode: 'cli' | 'cloud' | 'local';
+}
+
+const DEMO_MODELS: DemoModelCard[] = [
+  { id: 'opus', name: 'Claude Opus 4.7', provider: 'Claude Code', mode: 'cli' },
+  { id: 'sonnet', name: 'Claude Sonnet 4.6', provider: 'Claude Code', mode: 'cli' },
+  { id: 'gpt6', name: 'GPT-6-Luna', provider: 'Codex CLI', mode: 'cli' },
+  { id: 'gpt56luna', name: 'GPT-5.6-Luna', provider: 'Codex CLI', mode: 'cli' },
+  { id: 'gemini38', name: 'Gemini 3.8 Flash', provider: 'Antigravity CLI', mode: 'cli' },
+  { id: 'gpt56terra', name: 'GPT-5.6-Terra', provider: 'Codex CLI', mode: 'cli' },
+  { id: 'qwen36', name: 'qwen3.6-35b-iq2m:latest', provider: 'Ollama', mode: 'local' },
+];
 
 const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
   none: `{
@@ -19,7 +36,8 @@ const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
   "ai": {
     "enabled": true,
     "mode": "local-cli",
-    "provider": "claude-code", // or "antigravity-cli" | "codex-cli"
+    "translateModel": "Gemini 3.8 Flash (Antigravity CLI)",
+    "askAiDefaultModel": "GPT-5.6-Terra (Codex CLI)",
     "useLocalAuthSession": true
   }
 }`,
@@ -27,8 +45,8 @@ const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
   "ai": {
     "enabled": true,
     "mode": "cloud-api",
-    "provider": "gemini", // "openai" | "claude" | "deepseek"
-    "endpoint": "https://generativelanguage.googleapis.com/v1beta"
+    "provider": "deepseek", // "openai" | "claude" | "gemini"
+    "endpoint": "https://api.deepseek.com/v1"
   }
 }`,
   local: `{
@@ -37,7 +55,7 @@ const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
     "mode": "local-model",
     "provider": "ollama", // or "lm-studio"
     "baseUrl": "http://127.0.0.1:11434",
-    "model": "qwen2.5:14b"
+    "model": "qwen3.6-35b-iq2m:latest"
   }
 }`,
 };
@@ -45,12 +63,33 @@ const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
 export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
   const [selectedMode, setSelectedMode] = useState<'none' | 'cli' | 'cloud' | 'local'>('cli');
   const [previewView, setPreviewView] = useState<'ui' | 'json'>('ui');
+  const [translateModelId, setTranslateModelId] = useState<string>('gemini38');
+  const [askAiModelId, setAskAiModelId] = useState<string>('gpt56terra');
+  const [addProvider, setAddProvider] = useState<'claude' | 'codex' | 'antigravity' | 'api'>('api');
+  const [apiService, setApiService] = useState<'DeepSeek' | 'OpenAI' | 'Gemini' | 'Ollama'>(
+    'DeepSeek'
+  );
 
   const icons = {
     none: ShieldOff,
     cli: Terminal,
     cloud: Cloud,
     local: Cpu,
+  };
+
+  const handleModeSelect = (modeId: 'none' | 'cli' | 'cloud' | 'local') => {
+    setSelectedMode(modeId);
+    if (modeId === 'local') {
+      setTranslateModelId('qwen36');
+      setAddProvider('api');
+      setApiService('Ollama');
+    } else if (modeId === 'cloud') {
+      setAddProvider('api');
+      setApiService('DeepSeek');
+    } else if (modeId === 'cli') {
+      setTranslateModelId('gemini38');
+      setAskAiModelId('gpt56terra');
+    }
   };
 
   return (
@@ -88,7 +127,7 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
               <button
                 key={mode.id}
                 type="button"
-                onClick={() => setSelectedMode(mode.id)}
+                onClick={() => handleModeSelect(mode.id)}
                 className={`flex flex-col justify-between rounded-2xl border p-5 text-left transition-all ${
                   isSelected
                     ? 'border-[var(--accent-indigo)] bg-[var(--bg-surface)] shadow-sm ring-1 ring-[var(--accent-indigo)]'
@@ -125,14 +164,14 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
           })}
         </div>
 
-        {/* Real PDF AI Model Interface Screenshot + Config JSON Toggle */}
+        {/* Interactive PaperRead v1.5.3 Settings · Model Switcher UI + Config JSON Toggle */}
         <div className="mt-6 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)]">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-subtle)] bg-[var(--bg-surface-2)] px-4 py-2.5 text-xs">
             <span className="font-code font-semibold text-[var(--text-primary)]">
               {previewView === 'ui'
                 ? lang === 'zh'
-                  ? 'PaperRead · AI 模型切換與問答介面 (PDF p.7)'
-                  : 'PaperRead · AI Model Selector & Grounded Q&A (PDF p.7)'
+                  ? 'PaperRead · 設定 · 模型切換介面 (v1.5.3)'
+                  : 'PaperRead · Settings · Model Switcher (v1.5.3)'
                 : '~/PaperRead/config.json'}
             </span>
             <div className="flex items-center gap-2">
@@ -149,7 +188,7 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
                       : 'text-[var(--text-secondary)]'
                   }`}
                 >
-                  {lang === 'zh' ? '模型介面截圖' : 'Model UI'}
+                  {lang === 'zh' ? '模型介面預覽' : 'Model UI'}
                 </button>
                 <button
                   type="button"
@@ -167,21 +206,184 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
           </div>
 
           {previewView === 'ui' ? (
-            <div className="bg-[#f6f3ec] p-3 sm:p-5">
-              <img
-                src={
-                  lang === 'en'
-                    ? `${import.meta.env.BASE_URL}assets/aistudio/askAI_918778f6.png`
-                    : `${import.meta.env.BASE_URL}paperread/chatAI.jpg`
-                }
-                alt={
-                  lang === 'zh'
-                    ? 'PaperRead AI 模型切換與原文對照問答介面'
-                    : 'PaperRead AI Model Selector and Grounded Q&A Interface'
-                }
-                referrerPolicy="no-referrer"
-                className="mx-auto max-h-[540px] w-auto rounded-lg border border-[var(--border-subtle)] object-contain shadow-xs"
-              />
+            <div className="bg-[var(--bg-surface-2)]/70 p-4 sm:p-6">
+              <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-[var(--bg-surface)] shadow-sm">
+                {/* Modal Top Tabs: 設定 / 模型 / 閱讀 / 側邊欄 / 快捷鍵 */}
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-subtle)] px-6 py-4">
+                  <div className="flex flex-wrap items-center gap-5">
+                    <span className="text-base font-extrabold text-[var(--text-primary)]">
+                      {lang === 'zh' ? '設定' : 'Settings'}
+                    </span>
+                    <div className="flex items-center gap-4 text-xs font-semibold">
+                      <span className="border-b-2 border-[var(--accent-teal)] pb-1 text-[var(--text-primary)]">
+                        {lang === 'zh' ? '模型' : 'Models'}
+                      </span>
+                      <span className="pb-1 text-[var(--text-muted)]">
+                        {lang === 'zh' ? '閱讀' : 'Reading'}
+                      </span>
+                      <span className="pb-1 text-[var(--text-muted)]">
+                        {lang === 'zh' ? '側邊欄' : 'Sidebar'}
+                      </span>
+                      <span className="pb-1 text-[var(--text-muted)]">
+                        {lang === 'zh' ? '快捷鍵' : 'Shortcuts'}
+                      </span>
+                    </div>
+                  </div>
+                  <span className="font-code text-[11px] text-[var(--text-muted)]">
+                    {lang === 'zh'
+                      ? '點擊模型卡片體驗切換預設任務模型'
+                      : 'Click cards to switch Translation / Ask AI roles'}
+                  </span>
+                </div>
+
+                <div className="space-y-5 p-6">
+                  {/* Configured Model Grid (Matches Settings -> Model Screenshot) */}
+                  <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+                    {DEMO_MODELS.map((model) => {
+                      const isTranslate = translateModelId === model.id;
+                      const isAskAi = askAiModelId === model.id;
+                      const isAssigned = isTranslate || isAskAi;
+                      return (
+                        <button
+                          key={model.id}
+                          type="button"
+                          onClick={() => setTranslateModelId(model.id)}
+                          className={`flex flex-col justify-between rounded-xl border p-3.5 text-left transition-all ${
+                            isAssigned
+                              ? 'border-[var(--accent-teal)] bg-[var(--accent-teal)]/5 ring-1 ring-[var(--accent-teal)]/40'
+                              : 'border-[var(--border-subtle)] bg-[var(--bg-page)] hover:border-[var(--border-strong)]'
+                          }`}
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <span className="truncate text-xs font-bold text-[var(--text-primary)]">
+                              {model.name}
+                            </span>
+                            <span className="text-[10px] text-[var(--text-muted)]">···</span>
+                          </div>
+                          <div className="mt-1 text-[11px] text-[var(--text-secondary)]">
+                            {model.provider}
+                          </div>
+                          <div className="mt-2.5 flex min-h-[20px] flex-wrap items-center gap-1.5">
+                            {isTranslate && (
+                              <span className="rounded bg-[var(--accent-teal)]/15 px-1.5 py-0.5 text-[10px] font-semibold text-[var(--accent-teal)]">
+                                {lang === 'zh' ? '翻譯' : 'Translate'}
+                              </span>
+                            )}
+                            {isAskAi && (
+                              <span className="rounded bg-[var(--accent-teal)]/15 px-1.5 py-0.5 text-[10px] font-semibold text-[var(--accent-teal)]">
+                                {lang === 'zh' ? '問 AI 預設' : 'Ask AI Default'}
+                              </span>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+
+                    {/* + 新增模型 */}
+                    <button
+                      type="button"
+                      onClick={() => setAddProvider('api')}
+                      className="flex min-h-[86px] flex-col items-start justify-center gap-1 rounded-xl border border-dashed border-[var(--border-strong)] bg-[var(--bg-page)]/60 p-3.5 text-left transition-colors hover:border-[var(--accent-teal)]"
+                    >
+                      <Plus className="h-3.5 w-3.5 text-[var(--text-secondary)]" />
+                      <span className="text-xs font-bold text-[var(--text-primary)]">
+                        {lang === 'zh' ? '新增模型' : 'Add Model'}
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* 新增模型 Provider & API Panel */}
+                  <div className="border-t border-[var(--border-subtle)] pt-4">
+                    <div className="mb-2.5 text-[11px] font-semibold text-[var(--text-muted)]">
+                      {lang === 'zh' ? '新增模型來源' : 'Add Provider'}
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                      {(
+                        [
+                          { id: 'claude', label: 'Claude Code' },
+                          { id: 'codex', label: 'Codex CLI' },
+                          { id: 'antigravity', label: 'Antigravity CLI' },
+                          { id: 'api', label: lang === 'zh' ? 'API 介面' : 'API Endpoint' },
+                        ] as const
+                      ).map((item) => {
+                        const active = addProvider === item.id;
+                        return (
+                          <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => setAddProvider(item.id)}
+                            className={`rounded-lg border px-3 py-2 text-left text-xs font-bold transition-colors ${
+                              active
+                                ? 'border-[var(--accent-teal)] bg-[var(--accent-teal)]/5 text-[var(--text-primary)] ring-1 ring-[var(--accent-teal)]/30'
+                                : 'border-[var(--border-subtle)] bg-[var(--bg-page)] text-[var(--text-primary)] hover:border-[var(--border-strong)]'
+                            }`}
+                          >
+                            {item.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {addProvider === 'api' ? (
+                      <div className="mt-4 space-y-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-page)] p-4">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <span className="text-[11px] font-semibold text-[var(--text-muted)]">
+                            {lang === 'zh' ? '服務' : 'Service'}
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {(['DeepSeek', 'OpenAI', 'Gemini', 'Ollama'] as const).map((svc) => (
+                              <button
+                                key={svc}
+                                type="button"
+                                onClick={() => setApiService(svc)}
+                                className={`font-code rounded px-2 py-0.5 text-[10px] font-semibold transition-colors ${
+                                  apiService === svc
+                                    ? 'bg-[var(--accent-teal)] text-white'
+                                    : 'border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-secondary)]'
+                                }`}
+                              >
+                                {svc}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-3 py-2 text-xs font-medium text-[var(--text-primary)]">
+                          <span>{apiService}</span>
+                          <ChevronDown className="h-3.5 w-3.5 text-[var(--text-muted)]" />
+                        </div>
+
+                        <p className="inline-flex flex-wrap items-center gap-1 text-[11px] text-[var(--text-muted)]">
+                          <span>
+                            {lang === 'zh'
+                              ? `支援 OpenAI 相容 API 的服務 · ${apiService} 官方／自訂端點`
+                              : `OpenAI-compatible endpoint · ${apiService} API or local base URL`}
+                          </span>
+                          <ExternalLink className="h-3 w-3 text-[var(--accent-teal)]" />
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="mt-4 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-page)] p-4 text-xs text-[var(--text-secondary)]">
+                        {lang === 'zh'
+                          ? `直接調用本機已授權的 ${
+                              addProvider === 'claude'
+                                ? 'Claude Code'
+                                : addProvider === 'codex'
+                                ? 'Codex CLI'
+                                : 'Antigravity CLI'
+                            } 工作階段，無須重複填入雲端 API Key。`
+                          : `Invoke your already authenticated local ${
+                              addProvider === 'claude'
+                                ? 'Claude Code'
+                                : addProvider === 'codex'
+                                ? 'Codex CLI'
+                                : 'Antigravity CLI'
+                            } session without entering duplicate API keys.`}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           ) : (
             <pre className="font-code overflow-x-auto bg-[var(--bg-code)] p-4 text-xs leading-relaxed text-slate-200">

@@ -103,9 +103,9 @@ export interface Translations {
     }>;
     milestonesLabel: string;
     milestones: Array<{
-      date: string;
+      badge?: string;
       version: string;
-      summary: string;
+      highlights: string[];
       current?: boolean;
     }>;
     issuesTitle: string;
@@ -249,7 +249,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
         '沿用 EasyRead 專案原有的 AI 論文閱讀基礎，包含 PDF 原頁／譯文對照、基本註記及 AI 對話能力，並向原專案與其貢獻者明確致謝。',
       paperreadTitle: 'PaperRead 的擴充方向',
       paperreadDesc:
-        '聚焦研究探索（OpenAlex、閱讀看板、漸進式閱讀路徑）、手寫與貼紙標註、Zotero 匯入、心智圖、跨論文比較與 Obsidian 知識整理，持續擴增跨平台發布與測試維護。',
+        '聚焦研究探索（OpenAlex、閱讀看板、漸進式閱讀路徑）、手寫與貼紙標註、Zotero 單向同步、心智圖、跨論文比較與 Obsidian 知識整理，持續擴增跨平台發布與測試維護。',
     },
     workflow: {
       eyebrow: 'CORE WORKFLOW · 01 TO 04',
@@ -263,15 +263,16 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           shortDesc: 'OpenAlex、看板、閱讀路徑',
           heading: '從「找到相關論文」到「知道下一篇該讀什麼」',
           lead: '將文獻搜尋、候選清單與引用脈絡整理成連貫流程，並支援非同步背景研究任務降低操作中斷。',
-          versionNote: '版本對應｜v1.4.2：研究探索、看板、閱讀路徑；v1.5.0：互動路徑地圖、引用關係與背景任務',
+          versionNote:
+            '版本對應｜v1.4.2：探索、看板與閱讀路徑；v1.5.0：互動路徑地圖；v1.5.3：統一任務監控、通知已讀穩定性與英文介面自適應摘要',
           features: [
             {
               title: '研究探索（OpenAlex 整合）',
-              desc: '搜尋主題、會議期刊（ICCV / ECCV / CVPR / NeurIPS 等）與公開 PDF，展開 References、Citations 與 Related Works。',
+              desc: '搜尋主題、會議期刊（ICCV / ECCV / CVPR / NeurIPS 等）與公開 PDF；支援英文介面下以英文產出候選摘要與推薦理由。',
             },
             {
               title: '候選清單與閱讀看板',
-              desc: '透過 Kanban 看板管理待閱讀、閱讀中、待整理與已完成狀態與閱讀百分比，以 SQLite 保存工作區狀態。',
+              desc: '透過 Kanban 看板管理待閱讀、閱讀中、待整理與已完成狀態與閱讀百分比，並以統一任務監控彈窗追蹤背景作業。',
             },
             {
               title: '漸進式閱讀路徑 (Reading Path)',
@@ -283,27 +284,27 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '02',
           code: '02 · Read & Annotate',
           title: '沉浸閱讀與註記',
-          shortDesc: '雙開對照、手寫、貼紙、Zotero',
+          shortDesc: '多分頁標籤、雙語對照、手寫、貼紙',
           heading: '將個人標註與思考痕跡保留在可回溯的原文脈絡',
-          lead: '支援資料夾與 Zotero 文獻庫批次匯入，在多分頁雙開與原頁燈箱中自由手寫、貼紙並整理 Markdown 筆記。',
+          lead: '參考 Chrome 多分頁標籤列設計自由切換多篇論文，搭配雙語對照、手寫貼紙與本機 Zotero 單向同步。',
           versionNote:
-            '版本對應｜v1.5.1：滑鼠手寫、Zotero／資料夾匯入；v1.5.2：多分頁與貼紙；v1.5.3：續譯斷落歸併、原頁圖表燈箱縮放與全螢幕雙開筆記',
+            '版本對應｜v1.5.1：滑鼠手寫；v1.5.2：貼紙與多分頁標籤列；v1.5.3：樣式與交叉跳轉、全螢幕筆記及 Zotero 同步',
           features: [
             {
-              title: '多分頁與原頁並排雙開',
-              desc: '支援 Chrome 風格多分頁切換與拖曳獨立雙視窗對比，並可並排顯示譯文與 PDF 原頁即時核對公式細節。',
+              title: 'Chrome 風格多分頁標籤列設計',
+              desc: '參考 Chrome 標籤頁設計，多篇論文可於頂部標籤列自由切換並各自保留閱讀位置，也可拖曳成獨立視窗並排比較。',
             },
             {
-              title: '雙語閱讀、交叉跳轉與原頁燈箱',
-              desc: '保留 PDF 粗斜體與公式排版，支援圖表、章節與參考文獻交叉跳轉，點擊放大鏡全螢幕縮放檢視原頁圖表。',
+              title: '雙語對照、樣式保留與交叉跳轉',
+              desc: '左側譯文與右側英文原文同步對齊，保留 PDF 粗斜體與公式排版，並支援圖表、章節、公式與文獻雙向跳轉。',
             },
             {
               title: '手寫、貼紙與套索群組',
               desc: '支援滑鼠／觸控手寫、筆寬與顏色切換、橡皮擦復原重做，以及內建貼紙素材、文字方塊與套索群組移動。',
             },
             {
-              title: '全螢幕筆記與 Zotero 匯入',
-              desc: '支援全螢幕雙開並排、游標精準引用與 Markdown 筆記，支援匯出 XMind／SVG 及 Zotero 批次匯入。',
+              title: '全螢幕筆記與 Zotero 單向同步',
+              desc: '支援全螢幕雙開筆記與原文游標引用；設定本機 Zotero 資料夾即可單向同步 PDF 並保留既有筆記與進度。',
             },
           ],
         },
@@ -311,23 +312,23 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '03',
           code: '03 · Analyze & Connect',
           title: '深度剖析與連結',
-          shortDesc: '跨論文檢索、2–5 篇比較、心智圖',
+          shortDesc: '跨論文檢索、深度剖析、附加文件問 AI',
           heading: '從單篇理解延伸到跨論文比較，並回到原文核對',
-          lead: '提供跨論文 KaTeX 公式檢索、長文分桶深度剖析、Mind-Elixir 互動心智圖與支援附加檔案的問 AI。',
+          lead: '提供跨論文 KaTeX 公式檢索、長文比例分桶深度剖析、統一背景任務監控與支援附加檔案的問 AI。',
           versionNote:
-            '版本對應｜v1.5.2：技術剖析與 2–5 篇比較；v1.5.3：Mind-Elixir 引擎、統一任務監控、問 AI 附加文件與長文防截斷',
+            '版本對應｜v1.5.2：技術剖析與 2–5 篇比較；v1.5.3：長文分桶深度剖析、問 AI 附加文件、統一任務監控與全英文介面',
           features: [
             {
-              title: '跨論文 KaTeX 雙欄檢索',
-              desc: '同時檢索多篇論文的英文原文與譯文，術語自動推導補齊並支援 KaTeX 公式高亮與一鍵定位原段落。',
+              title: '跨論文 KaTeX 雙欄檢索與全英文介面',
+              desc: '同時檢索多篇論文原文與譯文，支援 KaTeX 高亮定位；Research Explorer、標籤列與任務彈窗亦提供完整英文介面。',
             },
             {
-              title: '長文深度剖析與多維度比較',
-              desc: '依章節比例分桶抽取避免長文截斷，支援 2–5 篇橫向比較並附原文依據標記直達閱讀器段落。',
+              title: '深度剖析報告與多維度比較',
+              desc: '長文依章節比例分桶抽取避免後半篇截斷，產出含實證判定與證據表的剖析報告，並支援 2–5 篇橫向比較。',
             },
             {
-              title: 'Mind-Elixir 心智圖與附加文件問答',
-              desc: '依翻譯目標語言動態生成互動心智圖；問 AI 支援附加 PDF／TXT／Markdown 文件輔助深入分析。',
+              title: '附加文件問 AI 與統一任務監控',
+              desc: '問 AI 支援附加圖表、PDF、TXT／MD 文件輔助分析與目標語言簡明作答；背景作業整合於統一任務監控彈窗。',
             },
           ],
         },
@@ -335,19 +336,19 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '04',
           code: '04 · Build Knowledge Base',
           title: '建構長期知識庫',
-          shortDesc: 'Obsidian WikiLinks 與離線預渲染',
+          shortDesc: 'Obsidian、XMind/SVG 與離線預渲染',
           heading: '將閱讀成果轉為可保存、可遷移的長期研究資產',
-          lead: '把摘要、深度剖析、貼紙標註、心智圖與研究筆記匯出為 Markdown、JSON、XMind／SVG 與離線 HTML。',
+          lead: '把摘要、深度剖析、貼紙標註、心智圖與研究筆記匯出為 Obsidian Markdown、XMind／SVG 與離線手機版 HTML。',
           versionNote:
-            '開放格式原則｜v1.5.3 支援 Obsidian 03-閱讀標註分類歸檔與離線 KaTeX 預渲染，完全相容 Git 備份與二次開發',
+            '開放格式原則｜v1.5.3 支援 Markmap 展開收合與匯出 XMind／SVG，以及離線 HTML 預先編譯 KaTeX 數學公式（相容 iOS 檔案 App）',
           features: [
             {
-              title: 'Obsidian 結構化匯出',
-              desc: '匯出筆記、頁碼標註與深度分析報告時自動生成 YAML Frontmatter 與雙向連結（[[WikiLinks]]）。',
+              title: 'Obsidian 與 XMind / SVG 匯出',
+              desc: '筆記與分析報告自動生成 YAML Frontmatter 與 [[WikiLinks]]，Markmap 支援展開／收合並可匯出 XMind 與 SVG。',
             },
             {
-              title: '開放格式管理',
-              desc: '所有閱讀資產皆保存在標準 Markdown 與 JSON 檔案中，不依賴專有雲端格式，確保長期可讀與可移植性。',
+              title: '離線預渲染與開放格式保存',
+              desc: '支援匯出離線 HTML 與輕量手機版（預先編譯 KaTeX 公式，相容 iOS 檔案 App），資產皆以開放格式保存於本機。',
             },
           ],
         },
@@ -405,16 +406,47 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       ],
       milestonesLabel: '開發與正式發布里程碑',
       milestones: [
-        { date: '10/10', version: 'v1.4.2', summary: '研究探索、閱讀看板' },
-        { date: '10/11', version: 'v1.4.4–6', summary: '智慧標註、Docker / CI' },
-        { date: '10/21', version: 'v1.5.0', summary: '互動閱讀路徑、Issue 修復' },
-        { date: '10/26', version: 'v1.5.1', summary: 'Zotero 匯入、手寫標註' },
-        { date: '11/02', version: 'v1.5.2', summary: '貼紙、分頁雙開、深度剖析' },
         {
-          date: '目前正式版',
+          badge: '目前正式版',
           version: 'v1.5.3',
-          summary: '續譯節流、全螢幕筆記、統一任務監控與多語系',
+          highlights: ['Zotero 單向同步', '統一任務監控彈窗', '全英文介面與多語系自適應'],
           current: true,
+        },
+        {
+          version: 'v1.5.2',
+          highlights: ['貼紙素材庫與手繪編輯', '多論文分頁與雙開並排', '深度剖析與互動心智圖'],
+        },
+        {
+          version: 'v1.5.1',
+          highlights: ['階層分類／Zotero 匯入', '滑鼠手寫與手機版匯出'],
+        },
+        {
+          version: 'v1.5.0',
+          highlights: ['互動式閱讀路徑地圖', 'Quick Peek 快速預覽'],
+        },
+        {
+          version: 'v1.4.7',
+          highlights: ['文獻庫封存區 (Archived)', '本機資料持久化完善'],
+        },
+        {
+          version: 'v1.4.6',
+          highlights: ['Docker 支援與 CI 發布'],
+        },
+        {
+          version: 'v1.4.5',
+          highlights: ['跨平台發布與 Linux AppImage'],
+        },
+        {
+          version: 'v1.4.4',
+          highlights: ['AI 智慧重點標註'],
+        },
+        {
+          version: 'v1.4.3',
+          highlights: ['EasyRead／Coread 相容遷移'],
+        },
+        {
+          version: 'v1.4.2',
+          highlights: ['研究工作區上線與 OpenAlex 探索', '候選清單與結構化摘要'],
         },
       ],
       issuesTitle: '可驗證的社群問題修復案例',
@@ -586,7 +618,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
         'Builds upon EasyRead’s core AI paper reading foundation—PDF original/translation alignment, foundational annotations, and AI chat—with explicit credit to upstream authors.',
       paperreadTitle: 'PaperRead Extensions',
       paperreadDesc:
-        'Expands into literature discovery (OpenAlex, Kanban, reading paths), ink & sticker annotations, Zotero batch import, mindmaps, multi-paper comparison, and cross-platform packaging.',
+        'Expands into literature discovery (OpenAlex, Kanban, reading paths), ink & sticker annotations, Zotero one-way folder sync, mindmaps, multi-paper comparison, and cross-platform packaging.',
     },
     workflow: {
       eyebrow: 'CORE WORKFLOW · 01 TO 04',
@@ -600,15 +632,16 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           shortDesc: 'OpenAlex, Kanban, Reading Path',
           heading: 'From finding relevant papers to knowing what to read next',
           lead: 'Connect topic search, candidate triaging, and citation lineage with non-blocking async background research tasks.',
-          versionNote: 'Releases | v1.4.2: Discovery, Kanban & Paths; v1.5.0: Interactive Path Map, Citations & Quick Peek',
+          versionNote:
+            'Releases | v1.4.2: Discovery & Kanban; v1.5.0: Interactive Path Map; v1.5.3: Unified Task Monitor, Notification Fix & English Adaptive Abstracts',
           features: [
             {
               title: 'OpenAlex Research Search',
-              desc: 'Search topics, conferences (ICCV, ECCV, CVPR, NeurIPS), and open PDFs while expanding References and Citations.',
+              desc: 'Search topics, conferences (ICCV, ECCV, CVPR, NeurIPS), and open PDFs; English UI automatically generates English candidate summaries and path rationales.',
             },
             {
               title: 'Candidate List & Reading Kanban',
-              desc: 'Track To Read, Reading, Organizing, and Done columns with completion percentages stored in local SQLite.',
+              desc: 'Track To Read, Reading, Organizing, and Done columns in SQLite, backed by a unified job monitor modal.',
             },
             {
               title: 'Progressive Reading Path',
@@ -620,27 +653,27 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '02',
           code: '02 · Read & Annotate',
           title: 'Read & Annotate',
-          shortDesc: 'Split-view, Ink, Stickers, Zotero',
+          shortDesc: 'Tab Bar, Bilingual, Ink, Stickers',
           heading: 'Keep personal annotations anchored to traceable source context',
-          lead: 'Batch import from folders or Zotero, read side-by-side with the PDF original page, and annotate freely.',
+          lead: 'Navigate open papers via Chrome-style tabs, read bilingual pages side by side, annotate freely, and sync Zotero folders.',
           versionNote:
-            'Releases | v1.5.2: Tabs & Stickers; v1.5.3: Resume Translation, Fullscreen Split Notes, XMind/SVG & High-Res Figure Lightbox',
+            'Releases | v1.5.1: Ink & Folders; v1.5.2: Tabs & Stickers; v1.5.3: Styling & Cross-Refs, Fullscreen Notes & Zotero Sync',
           features: [
             {
-              title: 'Chrome-Style Tabs & Detached Split Windows',
-              desc: 'Switch tabs seamlessly or drag tabs into side-by-side windows beside synchronized original PDF pages.',
+              title: 'Chrome-Style Multi-Tab Bar Design',
+              desc: 'Switch effortlessly between open papers in the top Chrome-style tab strip with preserved positions, or drag tabs out to compare.',
             },
             {
-              title: 'Bilingual Reader, Cross-Refs & Figure Lightbox',
-              desc: 'Preserve bold/italic styling, jump across figure/equation cross-references, and zoom high-res figures cleanly.',
+              title: 'Bilingual Split View, Styling & Cross-Refs',
+              desc: 'Align translated prose beside original text with preserved PDF bold/italic styling and bidirectional figure/equation jumps.',
             },
             {
               title: 'Handwriting, Stickers & Lasso Group',
               desc: 'Mouse/stylus ink with width, color, eraser, undo/redo, built-in sticker packs, and lasso group dragging.',
             },
             {
-              title: 'Fullscreen Notes & Zotero Import',
-              desc: 'Fullscreen split Markdown workspace with cursor citations, XMind/SVG export, and Zotero batch import.',
+              title: 'Fullscreen Notes & Zotero One-Way Sync',
+              desc: 'Fullscreen split notes with cursor citations plus one-way local Zotero PDF sync that preserves existing notes and progress.',
             },
           ],
         },
@@ -648,23 +681,23 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '03',
           code: '03 · Analyze & Connect',
           title: 'Analyze & Connect',
-          shortDesc: 'Cross-Paper Search, Compare, Mindmap',
+          shortDesc: 'Cross-Paper Search, Deep Audit, File Q&A',
           heading: 'Move from single-paper reading to cross-paper synthesis',
-          lead: 'Query bilingual KaTeX corpora, run bucketed long-paper audits, explore Mind-Elixir mindmaps, and attach files to Ask AI.',
+          lead: 'Query bilingual KaTeX corpora, run bucketed long-paper audits, monitor jobs centrally, and attach reference files to Ask AI.',
           versionNote:
-            'Releases | v1.5.2: Deep Audit & 2–5 Paper Compare; v1.5.3: Mind-Elixir, Unified Job Monitor, File Attachments & Anti-Truncation',
+            'Releases | v1.5.2: Deep Audit & 2–5 Paper Compare; v1.5.3: Bucketed Audit Reports, File-Attached Ask AI, Unified Job Monitor & Full English UI',
           features: [
             {
-              title: 'Cross-Paper KaTeX Search',
-              desc: 'Search both English and translated corpora with terminology inference, KaTeX rendering, and instant paragraph jump.',
+              title: 'Cross-Paper KaTeX Search & Full English UI',
+              desc: 'Search English and translated corpora with KaTeX highlights; Research Explorer, tabs, logs, and job modals support full English.',
             },
             {
-              title: 'Deep Analysis & 2–5 Paper Comparison',
-              desc: 'Section-bucketed long-paper analysis prevents truncation; compare 2–5 papers with clickable source citations.',
+              title: 'Deep Audit Report & Multi-Paper Compare',
+              desc: 'Section-proportioned bucketing prevents long-paper truncation; inspect verdict & evidence tables or compare 2–5 papers.',
             },
             {
-              title: 'Mind-Elixir Mindmap & File-Attached Q&A',
-              desc: 'Interactive mindmaps in target language plus Ask AI supporting attached PDF, TXT, and Markdown files.',
+              title: 'File-Attached Ask AI & Unified Job Monitor',
+              desc: 'Attach figures, PDFs, TXT, or MD files to Ask AI with target-language replies, backed by a unified background task monitor.',
             },
           ],
         },
@@ -672,19 +705,19 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '04',
           code: '04 · Build Knowledge Base',
           title: 'Build Your Knowledge Base',
-          shortDesc: 'Obsidian WikiLinks & Offline KaTeX',
+          shortDesc: 'Obsidian, XMind/SVG & Offline KaTeX',
           heading: 'Turn deep reading into durable, portable research assets',
-          lead: 'Export structured summaries, audits, mindmaps, and user notes into clean Markdown, JSON, XMind/SVG, and offline HTML.',
+          lead: 'Export structured summaries, audits, mindmaps, and user notes into Obsidian Markdown, XMind/SVG, and offline mobile HTML.',
           versionNote:
-            'Open Format | v1.5.3 adds categorized Obsidian annotation folders and pre-rendered offline KaTeX HTML for full portability',
+            'Open Format | v1.5.3 adds Markmap expand/collapse with XMind/SVG export and pre-rendered offline KaTeX HTML for iOS Files',
           features: [
             {
-              title: 'Obsidian Export',
-              desc: 'Export notes, annotations, and reports with YAML frontmatter and bidirectional [[WikiLinks]].',
+              title: 'Obsidian & XMind / SVG Export',
+              desc: 'Generate YAML frontmatter and [[WikiLinks]] for Obsidian, plus Markmap expand/collapse controls and XMind/SVG export.',
             },
             {
-              title: 'Open Format Storage',
-              desc: 'All research records stay in standard Markdown and JSON files on disk for long-term ownership.',
+              title: 'Pre-Rendered Offline HTML & Open Storage',
+              desc: 'Export standalone HTML or compact mobile packages with pre-compiled KaTeX (compatible with iOS Files) in open local formats.',
             },
           ],
         },
@@ -742,16 +775,47 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       ],
       milestonesLabel: 'Release Milestones',
       milestones: [
-        { date: '10/10', version: 'v1.4.2', summary: 'Discovery & Kanban' },
-        { date: '10/11', version: 'v1.4.4–6', summary: 'Smart Notes, Docker / CI' },
-        { date: '10/21', version: 'v1.5.0', summary: 'Reading Path & Fixes' },
-        { date: '10/26', version: 'v1.5.1', summary: 'Zotero Import & Ink' },
-        { date: '11/02', version: 'v1.5.2', summary: 'Stickers, Multi-Tab & Audit' },
         {
-          date: 'Current',
+          badge: 'Current',
           version: 'v1.5.3',
-          summary: 'Resume Translation, Fullscreen Notes & Unified Jobs',
+          highlights: ['Zotero one-way sync', 'Unified task monitor modal', 'Full English UI & adaptive output'],
           current: true,
+        },
+        {
+          version: 'v1.5.2',
+          highlights: ['Stickers & freehand editing', 'Multi-tab bar & split windows', 'Deep audit & interactive mindmap'],
+        },
+        {
+          version: 'v1.5.1',
+          highlights: ['Nested folders & Zotero import', 'Mouse ink & mobile HTML export'],
+        },
+        {
+          version: 'v1.5.0',
+          highlights: ['Interactive reading path map', 'Quick Peek summary drawer'],
+        },
+        {
+          version: 'v1.4.7',
+          highlights: ['Library archive section', 'Local data persistence'],
+        },
+        {
+          version: 'v1.4.6',
+          highlights: ['Docker support & CI releases'],
+        },
+        {
+          version: 'v1.4.5',
+          highlights: ['Cross-platform builds & AppImage'],
+        },
+        {
+          version: 'v1.4.4',
+          highlights: ['AI Smart Annotations'],
+        },
+        {
+          version: 'v1.4.3',
+          highlights: ['EasyRead / Coread migration'],
+        },
+        {
+          version: 'v1.4.2',
+          highlights: ['Workspace launch & OpenAlex', 'Candidate list & summaries'],
         },
       ],
       issuesTitle: 'Verifiable Community Issue Fixes',

@@ -79,25 +79,39 @@ export function EngineeringMilestones({ t }: EngineeringMilestonesProps) {
           <div className="mb-3 text-xs font-semibold text-[var(--accent-amber)]">
             {t.milestonesLabel}
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {t.milestones.map((m) => (
               <div
                 key={m.version}
-                className={`rounded-xl border p-4 ${
+                className={`flex flex-col rounded-xl border p-4 ${
                   m.current
-                    ? 'border-[var(--accent-indigo)] bg-[var(--bg-sage)]'
+                    ? 'border-[var(--accent-indigo)] bg-[var(--bg-sage)] shadow-xs'
                     : 'border-[var(--border-subtle)] bg-[var(--bg-surface)]'
                 }`}
               >
-                <div className="font-code text-[11px] font-medium text-[var(--text-muted)]">
-                  {m.date}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="font-code text-base font-bold text-[var(--text-primary)]">
+                    {m.version}
+                  </div>
+                  {m.badge && (
+                    <span className="font-code rounded bg-[var(--accent-indigo)]/10 px-2 py-0.5 text-[10px] font-semibold text-[var(--accent-indigo)]">
+                      {m.badge}
+                    </span>
+                  )}
                 </div>
-                <div className="font-code mt-1 text-base font-bold text-[var(--text-primary)]">
-                  {m.version}
-                </div>
-                <div className="mt-1 text-xs leading-relaxed text-[var(--text-secondary)]">
-                  {m.summary}
-                </div>
+                <ul className="mt-2.5 space-y-1.5 text-xs leading-relaxed text-[var(--text-secondary)]">
+                  {m.highlights.map((item) => (
+                    <li key={item} className="flex items-start gap-1.5">
+                      <span
+                        aria-hidden="true"
+                        className={`mt-1.5 h-1 w-1 shrink-0 rounded-full ${
+                          m.current ? 'bg-[var(--accent-indigo)]' : 'bg-[var(--accent-amber)]'
+                        }`}
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>

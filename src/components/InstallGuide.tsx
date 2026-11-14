@@ -24,7 +24,7 @@ export function InstallGuide({
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const linuxCommand = `chmod +x PaperRead-*.AppImage\n./PaperRead-*.AppImage`;
-  const dockerCommand = `git clone https://github.com/YuriyLin/PaperRead.git\ncd PaperRead\ndocker compose up -d`;
+  const dockerCommand = `docker pull ghcr.io/yuriylin/paperread:v1.5.3\ndocker run -d --name paperread --restart unless-stopped -p 8765:8765 -v paperread-data:/data/PaperRead ghcr.io/yuriylin/paperread:v1.5.3`;
 
   const copyCommand = async (id: string, cmd: string) => {
     try {
@@ -223,8 +223,8 @@ export function InstallGuide({
                 </h3>
                 <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
                   {lang === 'zh'
-                    ? '適合部署於個人 NAS、實驗室伺服器或需要透過瀏覽器遠端存取的研究環境：'
-                    : 'Ideal for personal servers, lab workstations, or browser-based remote research access:'}
+                    ? '可直接拉取 v1.5.3 官方 GHCR 映像檔一鍵啟動（適合 NAS、實驗室伺服器或遠端瀏覽器存取）：'
+                    : 'Pull the official v1.5.3 GHCR image directly for personal NAS, lab workstations, or remote browser access:'}
                 </p>
 
                 <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[var(--bg-code)] p-4">
