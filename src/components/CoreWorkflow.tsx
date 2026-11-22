@@ -12,7 +12,19 @@ interface CoreWorkflowProps {
 
 const STAGE_FEATURE_DEMOS: Record<
   '01' | '02' | '03' | '04',
-  Array<{ src: string; srcEn?: string; captionZh: string; captionEn: string }>
+  Array<{
+    src: string;
+    srcEn?: string;
+    captionZh: string;
+    captionEn: string;
+    altViews?: Array<{
+      labelZh: string;
+      labelEn: string;
+      src: string;
+      captionZh: string;
+      captionEn: string;
+    }>;
+  }>
 > = {
   '01': [
     {
@@ -45,6 +57,31 @@ const STAGE_FEATURE_DEMOS: Record<
       srcEn: `${import.meta.env.BASE_URL}assets/aistudio/readingpage_0e301299.png`,
       captionZh: '雙語對照與原文核對：左側譯文與右側英文原文同步對齊，保留公式、粗斜體與交叉引用雙向跳轉',
       captionEn: 'Bilingual split reader aligning translated prose and original English text with formula & cross-ref jumps',
+    },
+    {
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_0bdf0301.png`,
+      captionZh: '圖片自動裁切與一鍵加入側欄：內文直接顯示完整高解析圖表，右鍵或點放大鏡即可「在側欄開啟」或重新截取',
+      captionEn: 'Auto-cropped figures display inline at full resolution with one-click "Open in Side Panel" and recrop tools',
+      altViews: [
+        {
+          labelZh: '內文完整顯示＋在側欄開啟',
+          labelEn: 'Inline Figure & Pin Menu',
+          src: `${import.meta.env.BASE_URL}assets/aistudio/image_0bdf0301.png`,
+          captionZh:
+            '圖片自動裁切並自動貼合閱讀欄寬，於內文處即可完整瀏覽，透過右鍵選單或放大鏡一鍵「在側欄開啟」與重新截取。',
+          captionEn:
+            'Auto-cropped figures fit the reading column cleanly; open any figure in the right side panel or recrop directly.',
+        },
+        {
+          labelZh: '右側側欄固定參考',
+          labelEn: 'Pinned Side Reference',
+          src: `${import.meta.env.BASE_URL}assets/aistudio/image_ab00c228.png`,
+          captionZh:
+            '將關鍵架構圖固定於右側側欄作為參考，閱讀後續章節與公式時無須來回上下捲動，並可隨時定位正文或開啟原頁 PDF。',
+          captionEn:
+            'Pin key architecture diagrams to the right dock while reading formulas downstream—no back-and-forth scrolling needed.',
+        },
+      ],
     },
     {
       src: `${import.meta.env.BASE_URL}assets/aistudio/handwrite_sticker_32fe6077.png`,
@@ -98,6 +135,7 @@ export function CoreWorkflow({
   onToast,
 }: CoreWorkflowProps) {
   const [featureIndex, setFeatureIndex] = useState<number>(0);
+  const [subViewIndex, setSubViewIndex] = useState<number>(0);
   const [stage04View, setStage04View] = useState<'screenshot' | 'markdown'>('screenshot');
   const [copiedMd, setCopiedMd] = useState(false);
   const [zoomSrc, setZoomSrc] = useState<{ src: string; caption: string } | null>(null);
@@ -105,12 +143,24 @@ export function CoreWorkflow({
   const activeStep = t.steps.find((s) => s.id === activeStepId) || t.steps[0];
   const demos = STAGE_FEATURE_DEMOS[activeStepId];
   const currentDemo = demos[featureIndex] || demos[0];
-  const currentDemoSrc =
-    lang === 'en' && currentDemo.srcEn ? currentDemo.srcEn : currentDemo.src;
+  const activeAltView = currentDemo.altViews?.[subViewIndex] || currentDemo.altViews?.[0];
+  const currentDemoSrc = activeAltView
+    ? activeAltView.src
+    : lang === 'en' && currentDemo.srcEn
+    ? currentDemo.srcEn
+    : currentDemo.src;
+  const currentDemoCaption = activeAltView
+    ? lang === 'zh'
+      ? activeAltView.captionZh
+      : activeAltView.captionEn
+    : lang === 'zh'
+    ? currentDemo.captionZh
+    : currentDemo.captionEn;
 
   const handleStepSelect = (id: '01' | '02' | '03' | '04') => {
     onSelectStep(id);
     setFeatureIndex(0);
+    setSubViewIndex(0);
   };
 
   const obsidianSnippet = `---
@@ -209,6 +259,7 @@ status: archived
                       type="button"
                       onClick={() => {
                         setFeatureIndex(idx);
+                        setSubViewIndex(0);
                         if (activeStepId === '04') setStage04View('screenshot');
                       }}
                       className={`w-full rounded-xl border p-4 text-left transition-all ${
@@ -247,7 +298,26 @@ status: archived
                   {lang === 'zh' ? '實際系統介面預覽' : 'Real Application Screenshot'}
                 </span>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  {currentDemo.altViews && (
+                    <div className="flex rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-0.5 text-[11px]">
+                      {currentDemo.altViews.map((view, idx) => (
+                        <button
+                          key={view.src}
+                          type="button"
+                          onClick={() => setSubViewIndex(idx)}
+                          className={`rounded px-2.5 py-1 font-semibold transition-colors ${
+                            subViewIndex === idx
+                              ? 'bg-[var(--accent-indigo)] text-white'
+                              : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                          }`}
+                        >
+                          {lang === 'zh' ? view.labelZh : view.labelEn}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
                   {activeStepId === '04' && (
                     <div className="flex rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-0.5 text-[11px]">
                       <button
@@ -281,7 +351,7 @@ status: archived
                       onClick={() =>
                         setZoomSrc({
                           src: currentDemoSrc,
-                          caption: lang === 'zh' ? currentDemo.captionZh : currentDemo.captionEn,
+                          caption: currentDemoCaption,
                         })
                       }
                       className="inline-flex h-7 items-center gap-1 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2.5 text-[11px] font-semibold text-[var(--text-secondary)] hover:border-[var(--accent-indigo)] hover:text-[var(--text-primary)]"
@@ -379,20 +449,20 @@ status: archived
                     onClick={() =>
                       setZoomSrc({
                         src: currentDemoSrc,
-                        caption: lang === 'zh' ? currentDemo.captionZh : currentDemo.captionEn,
+                        caption: currentDemoCaption,
                       })
                     }
                     className="group block w-full overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[#f6f3ec] text-left"
                   >
                     <img
                       src={currentDemoSrc}
-                      alt={lang === 'zh' ? currentDemo.captionZh : currentDemo.captionEn}
+                      alt={currentDemoCaption}
                       referrerPolicy="no-referrer"
                       className="aspect-[16/10] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.01]"
                     />
                   </button>
                   <p className="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
-                    {lang === 'zh' ? currentDemo.captionZh : currentDemo.captionEn}
+                    {currentDemoCaption}
                   </p>
                 </>
               )}

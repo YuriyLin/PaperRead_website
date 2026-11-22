@@ -91,6 +91,16 @@ export interface Translations {
       providers: string[];
     }>;
     configTitle: string;
+    mineru: {
+      eyebrow: string;
+      title: string;
+      desc: string;
+      efficiencyNote: string;
+      localTitle: string;
+      localDesc: string;
+      cloudTitle: string;
+      cloudDesc: string;
+    };
   };
   engineering: {
     eyebrow: string;
@@ -187,12 +197,12 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       langSwitchLabel: '繁 / EN',
     },
     hero: {
-      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.3',
+      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.4',
       brandSuffix: 'AI 學術研究與論文閱讀工作區',
       headline: '從文獻探索、論文閱讀到知識整理的個人研究工作區',
       subtitle:
         '建立於 EasyRead 之上持續開源開發，將 OpenAlex 文獻探索、看板排程、雙語原頁對照、手寫貼紙註記與 Obsidian 知識庫整合進同一個本機工作區。',
-      ctaDesktop: '下載桌面版 (v1.5.3)',
+      ctaDesktop: '下載桌面版 (v1.5.4)',
       ctaDocker: 'Docker 快速部署',
       ctaGithub: '瀏覽 GitHub',
       workspaceLabel: '~/PaperRead · Local Workspace',
@@ -284,11 +294,11 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '02',
           code: '02 · Read & Annotate',
           title: '沉浸閱讀與註記',
-          shortDesc: '多分頁標籤、雙語對照、手寫、貼紙',
+          shortDesc: '標籤列、圖片側欄對照、手寫、貼紙',
           heading: '將個人標註與思考痕跡保留在可回溯的原文脈絡',
-          lead: '參考 Chrome 多分頁標籤列設計自由切換多篇論文，搭配雙語對照、手寫貼紙與本機 Zotero 單向同步。',
+          lead: '內文自動裁切顯示完整圖表並支援一鍵固定於右側側欄參考，搭配 Chrome 多分頁標籤列、手寫貼紙與 Zotero 同步。',
           versionNote:
-            '版本對應｜v1.5.1：滑鼠手寫；v1.5.2：貼紙與多分頁標籤列；v1.5.3：樣式與交叉跳轉、全螢幕筆記及 Zotero 同步',
+            '版本對應｜v1.5.2：貼紙與多分頁；v1.5.3：交叉跳轉與 Zotero 同步；v1.5.4：圖片自動裁切、側欄固定對照、單表重解析與 MinerU 結構解析',
           features: [
             {
               title: 'Chrome 風格多分頁標籤列設計',
@@ -297,6 +307,10 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
             {
               title: '雙語對照、樣式保留與交叉跳轉',
               desc: '左側譯文與右側英文原文同步對齊，保留 PDF 粗斜體與公式排版，並支援圖表、章節、公式與文獻雙向跳轉。',
+            },
+            {
+              title: '圖片自動裁切與右側側欄對照',
+              desc: '於內文處即可完整瀏覽高解析度自動裁切圖表（支援手動重框），並可一鍵加入右側側欄作為參考，閱讀後續段落與公式免來回捲動。',
             },
             {
               title: '手寫、貼紙與套索群組',
@@ -393,6 +407,19 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
         },
       ],
       configTitle: '切換檢視真實設定畫面或 config.json',
+      mineru: {
+        eyebrow: 'PDF STRUCTURE ENGINE · MINERU (OPTIONAL · v1.5.4)',
+        title: '整合 MinerU 輕量、高精度的 PDF 結構解析引擎',
+        desc: '先由 MinerU 精準擷取數學公式（LaTeX）、跨欄與合併儲存格表格及圖片座標，再交由模型純文字翻譯；支援雲端與本地自架自由切換。',
+        efficiencyNote:
+          '大幅提高文獻翻譯速度並顯著減少 LLM Token 消耗（搭配本機參考文獻解析，純文獻頁更不額外耗費 Token）。',
+        localTitle: '本地自架模式（Local / 內網）',
+        localDesc:
+          '於本機或內網執行，省去檔案上傳與排隊延遲（搭配 GPU 速度最快），資料完全不外流，適合機密手稿。',
+        cloudTitle: '雲端解析模式（mineru.net）',
+        cloudDesc:
+          '免裝環境、填上 API Token 即可上手，並支援單頁實測；連線失敗或超額時自動回退內建流程。',
+      },
     },
     engineering: {
       eyebrow: 'ENGINEERING & RELEASES',
@@ -401,52 +428,43 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       archLabel: '系統組成架構',
       archLayers: [
         { title: '使用介面', items: ['Electron 桌面版', 'Docker 瀏覽器版'] },
-        { title: '應用與研究服務', items: ['Python 後端', '非同步研究／分析任務'] },
+        { title: '應用與研究服務', items: ['Python 後端 · MinerU 解析', '非同步研究／分析任務'] },
         { title: '資料與開放整合', items: ['SQLite · JSON · Markdown', 'OpenAlex · 彈性 AI 模型'] },
       ],
-      milestonesLabel: '開發與正式發布里程碑',
+      milestonesLabel: '重大版本里程碑',
       milestones: [
         {
           badge: '目前正式版',
-          version: 'v1.5.3',
-          highlights: ['Zotero 單向同步', '統一任務監控彈窗', '全英文介面與多語系自適應'],
+          version: 'v1.5.4',
+          highlights: [
+            '圖片自動裁切與右側側欄對照',
+            '整合 MinerU 結構解析（雲端／本地）',
+            '單表重新解析與自訂翻譯補充指令',
+          ],
           current: true,
         },
         {
+          version: 'v1.5.3',
+          highlights: ['Zotero 單向同步', '統一任務監控彈窗', '全英文介面與多語系自適應'],
+        },
+        {
           version: 'v1.5.2',
-          highlights: ['貼紙素材庫與手繪編輯', '多論文分頁與雙開並排', '深度剖析與互動心智圖'],
+          highlights: ['貼紙素材庫與手繪編輯', '多論文分頁與雙開並排', '深度剖析報告與互動心智圖'],
         },
         {
           version: 'v1.5.1',
-          highlights: ['階層分類／Zotero 匯入', '滑鼠手寫與手機版匯出'],
+          highlights: ['階層分類與 Zotero 批次匯入', '滑鼠手寫註記與行動版 HTML 匯出'],
         },
         {
           version: 'v1.5.0',
-          highlights: ['互動式閱讀路徑地圖', 'Quick Peek 快速預覽'],
+          highlights: ['互動式閱讀路徑地圖', 'Quick Peek 快速預覽與背景任務'],
         },
         {
-          version: 'v1.4.7',
-          highlights: ['文獻庫封存區 (Archived)', '本機資料持久化完善'],
-        },
-        {
-          version: 'v1.4.6',
-          highlights: ['Docker 支援與 CI 發布'],
-        },
-        {
-          version: 'v1.4.5',
-          highlights: ['跨平台發布與 Linux AppImage'],
-        },
-        {
-          version: 'v1.4.4',
-          highlights: ['AI 智慧重點標註'],
-        },
-        {
-          version: 'v1.4.3',
-          highlights: ['EasyRead／Coread 相容遷移'],
-        },
-        {
-          version: 'v1.4.2',
-          highlights: ['研究工作區上線與 OpenAlex 探索', '候選清單與結構化摘要'],
+          version: 'v1.4.2 – v1.4.6',
+          highlights: [
+            '研究工作區與 OpenAlex 探索上線',
+            'AI 智慧標註與跨平台 Docker / AppImage',
+          ],
         },
       ],
       issuesTitle: '可驗證的社群問題修復案例',
@@ -493,7 +511,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       eyebrow: 'INSTALLATION & QUICK START',
       title: '多平台安裝與快速上手導覽',
       descPrefix:
-        '目前最新正式發布版本為 v1.5.3。支援桌面端一鍵安裝、應用內自動檢查更新與 Docker 自架瀏覽器版。',
+        '目前最新正式發布版本為 v1.5.4。支援桌面端一鍵安裝、應用內自動檢查更新與 Docker 自架瀏覽器版。',
       detectedPrefix: '已自動偵測您的環境：',
       copyBtn: '複製指令',
       copiedBtn: '已複製',
@@ -556,12 +574,12 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       langSwitchLabel: 'EN / 繁',
     },
     hero: {
-      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.3',
+      kicker: 'OPEN SOURCE · LOCAL-FIRST AI RESEARCH WORKSPACE · v1.5.4',
       brandSuffix: 'AI Academic Research & Paper Reading Workspace',
       headline: 'A Local-First Personal Research Workspace from Discovery to Knowledge',
       subtitle:
         'Built upon EasyRead, unifying OpenAlex literature search, reading Kanban, bilingual original-page alignment, ink & sticker annotations, and Obsidian export in one local workspace.',
-      ctaDesktop: 'Download Desktop (v1.5.3)',
+      ctaDesktop: 'Download Desktop (v1.5.4)',
       ctaDocker: 'Docker Quick Deploy',
       ctaGithub: 'Browse GitHub',
       workspaceLabel: '~/PaperRead · Local Workspace',
@@ -653,11 +671,11 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           id: '02',
           code: '02 · Read & Annotate',
           title: 'Read & Annotate',
-          shortDesc: 'Tab Bar, Bilingual, Ink, Stickers',
+          shortDesc: 'Tab Bar, Figure Dock, Ink, Stickers',
           heading: 'Keep personal annotations anchored to traceable source context',
-          lead: 'Navigate open papers via Chrome-style tabs, read bilingual pages side by side, annotate freely, and sync Zotero folders.',
+          lead: 'Inspect auto-cropped figures inline or pinned in the right side panel alongside Chrome-style tabs, ink annotations, and Zotero sync.',
           versionNote:
-            'Releases | v1.5.1: Ink & Folders; v1.5.2: Tabs & Stickers; v1.5.3: Styling & Cross-Refs, Fullscreen Notes & Zotero Sync',
+            'Releases | v1.5.2: Tabs & Stickers; v1.5.3: Cross-Refs & Zotero Sync; v1.5.4: Auto-Cropped Figures, Side Dock Reference, Single-Table Reparse & MinerU',
           features: [
             {
               title: 'Chrome-Style Multi-Tab Bar Design',
@@ -666,6 +684,10 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
             {
               title: 'Bilingual Split View, Styling & Cross-Refs',
               desc: 'Align translated prose beside original text with preserved PDF bold/italic styling and bidirectional figure/equation jumps.',
+            },
+            {
+              title: 'Auto-Cropped Figures & Side-Panel Reference',
+              desc: 'Render crisp auto-cropped figures inline (with manual recrop) and pin any figure to the right dock so you never scroll back to compare.',
             },
             {
               title: 'Handwriting, Stickers & Lasso Group',
@@ -762,6 +784,19 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
         },
       ],
       configTitle: 'Toggle between real settings UI and config.json',
+      mineru: {
+        eyebrow: 'PDF STRUCTURE ENGINE · MINERU (OPTIONAL · v1.5.4)',
+        title: 'MinerU Lightweight, High-Precision PDF Structure Parsing',
+        desc: 'Extract LaTeX formulas, merged-cell tables, and figure coordinates via MinerU before pure-text LLM translation—freely switchable between Local Self-Hosted and Cloud modes.',
+        efficiencyNote:
+          'Accelerates paper translation while significantly reducing LLM token consumption (paired with local reference parsing at zero extra token cost).',
+        localTitle: 'Local Self-Hosted Mode',
+        localDesc:
+          'Runs on your workstation or LAN with zero upload/queue latency (fastest with GPU) and keeps sensitive drafts 100% private.',
+        cloudTitle: 'Cloud Parsing Mode (mineru.net)',
+        cloudDesc:
+          'Zero local setup—enter your API Token and test on 1 page immediately, with automatic fallback to the built-in pipeline on error or quota limit.',
+      },
     },
     engineering: {
       eyebrow: 'ENGINEERING & RELEASES',
@@ -770,16 +805,24 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       archLabel: 'System Architecture',
       archLayers: [
         { title: 'Client Layer', items: ['Electron Desktop', 'Docker Browser Edition'] },
-        { title: 'Application & Tasks', items: ['Python Backend', 'Async Research / Analysis Jobs'] },
+        { title: 'Application & Tasks', items: ['Python Backend · MinerU Engine', 'Async Research / Analysis Jobs'] },
         { title: 'Data & Integrations', items: ['SQLite · JSON · Markdown', 'OpenAlex · Flexible AI'] },
       ],
-      milestonesLabel: 'Release Milestones',
+      milestonesLabel: 'Major Release Milestones',
       milestones: [
         {
           badge: 'Current',
+          version: 'v1.5.4',
+          highlights: [
+            'Auto-cropped figures & right-dock reference',
+            'MinerU PDF parser (Cloud / Local self-hosted)',
+            'Single-table reparse & custom translation prompts',
+          ],
+          current: true,
+        },
+        {
           version: 'v1.5.3',
           highlights: ['Zotero one-way sync', 'Unified task monitor modal', 'Full English UI & adaptive output'],
-          current: true,
         },
         {
           version: 'v1.5.2',
@@ -791,31 +834,14 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
         },
         {
           version: 'v1.5.0',
-          highlights: ['Interactive reading path map', 'Quick Peek summary drawer'],
+          highlights: ['Interactive reading path map', 'Quick Peek drawer & background jobs'],
         },
         {
-          version: 'v1.4.7',
-          highlights: ['Library archive section', 'Local data persistence'],
-        },
-        {
-          version: 'v1.4.6',
-          highlights: ['Docker support & CI releases'],
-        },
-        {
-          version: 'v1.4.5',
-          highlights: ['Cross-platform builds & AppImage'],
-        },
-        {
-          version: 'v1.4.4',
-          highlights: ['AI Smart Annotations'],
-        },
-        {
-          version: 'v1.4.3',
-          highlights: ['EasyRead / Coread migration'],
-        },
-        {
-          version: 'v1.4.2',
-          highlights: ['Workspace launch & OpenAlex', 'Candidate list & summaries'],
+          version: 'v1.4.2 – v1.4.6',
+          highlights: [
+            'Research workspace & OpenAlex discovery launch',
+            'AI Smart Annotations, Docker & Linux AppImage',
+          ],
         },
       ],
       issuesTitle: 'Verifiable Community Issue Fixes',
@@ -862,7 +888,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       eyebrow: 'INSTALLATION & QUICK START',
       title: 'Cross-Platform Desktop & Self-Hosted Docker Setup',
       descPrefix:
-        'Latest stable release: v1.5.3. Available for Windows, macOS, Linux, and Docker with built-in update notifications.',
+        'Latest stable release: v1.5.4. Available for Windows, macOS, Linux, and Docker with built-in update notifications.',
       detectedPrefix: 'Detected OS:',
       copyBtn: 'Copy Command',
       copiedBtn: 'Copied',

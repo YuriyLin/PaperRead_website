@@ -20,7 +20,7 @@ export function Footer({ t }: FooterProps) {
                 className="h-7 w-7 shrink-0 object-contain mix-blend-multiply dark:invert dark:mix-blend-screen"
               />
               <span className="text-base">PaperRead</span>
-              <span className="font-code text-xs font-medium text-[var(--text-muted)]">v1.5.3</span>
+              <span className="font-code text-xs font-medium text-[var(--text-muted)]">v1.5.4</span>
             </div>
             <p className="mt-3.5 max-w-sm text-sm leading-relaxed text-[var(--text-secondary)]">
               {t.tagline}

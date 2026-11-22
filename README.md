@@ -1,6 +1,6 @@
 # PaperRead Official Website
 
-Official introduction and interactive tour website (Single Page Application) for the open-source local-first AI research workspace **[PaperRead](https://github.com/YuriyLin/PaperRead)** (`v1.5.3`).
+Official introduction and interactive tour website (Single Page Application) for the open-source local-first AI research workspace **[PaperRead](https://github.com/YuriyLin/PaperRead)** (`v1.5.4`).
 
 繁體中文｜English bilingual interface with **Paper Light Mode** and **Dark Mode** switching.
 
@@ -10,9 +10,9 @@ Official introduction and interactive tour website (Single Page Application) for
 
 - **Interactive Hero & Live Workspace Mockup**: Kinetic 4-stage research pipeline (`Discover` → `Read & Ink` → `Analyze` → `Organize`) paired with interactive tabs and full-screen lightbox previews of real PaperRead interfaces (`readingpage.jpg`, `researchspace.jpg`, `route.jpg`, `handwrite.jpg`, `sticker.jpg`, `mindmap.jpg`, `chatAI.jpg`).
 - **Pain Points & Open-Source Attribution**: Contrasts traditional fragmented research workflows with PaperRead's local-first approach and credits the upstream [EasyRead](https://github.com/YuriyLin/PaperRead) foundation.
-- **Core Research Workflow (01–04)**: Interactive explorer covering OpenAlex discovery & Kanban, bilingual split reading & handwriting/stickers, cross-paper search & 2–5 paper comparison, and Obsidian `[[WikiLinks]]` export.
-- **Flexible AI Model Architecture**: Explains offline no-AI mode, local CLI tools (`Antigravity CLI`, `Claude Code`, `Codex CLI`), cloud APIs, and air-gapped local models (`Ollama`, `LM Studio`) with an interactive `config.json` vs UI preview toggle.
-- **Architecture, Releases & Community Contribution Guide**: Showcases system layers, release milestones (`v1.4.2` – `v1.5.3`), verifiable resolved GitHub Issues (`#6`, `#7`), and `CONTRIBUTING.md` Issue / PR conventions with one-click copyable test commands.
+- **Core Research Workflow (01–04)**: Interactive explorer covering OpenAlex discovery & Kanban, Chrome-style tabs, auto-cropped figures & side-dock reference, handwriting/stickers, cross-paper search & deep audits, and Obsidian `[[WikiLinks]]` export.
+- **Flexible AI Model & MinerU PDF Engine**: Explains offline no-AI mode, local CLI tools (`Antigravity CLI`, `Claude Code`, `Codex CLI`), cloud APIs, air-gapped local models (`Ollama`, `LM Studio`), plus optional **MinerU** PDF structure parsing (Cloud & Local self-hosted) to accelerate translation and cut LLM token usage.
+- **Architecture, Releases & Community Contribution Guide**: Showcases system layers, major release milestones (`v1.4.2` – `v1.5.4`), verifiable resolved GitHub Issues (`#6`, `#7`), and `CONTRIBUTING.md` Issue / PR conventions with one-click copyable test commands.
 - **Cross-Platform Install & Local Storage Inspector**: Auto-detects Windows, macOS, Linux, or Docker instructions and lets visitors inspect the open JSON / Markdown / SQLite structure under `~/PaperRead`.
 
 ---

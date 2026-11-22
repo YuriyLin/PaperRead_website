@@ -71,6 +71,16 @@ const DEMO_GROUPS: Record<MockupTab, DemoShot[]> = {
       captionEn:
         'Chrome-style paper tabs preserve each paper’s reading position and detach into independent comparison windows.',
     },
+    {
+      id: 'figure-dock',
+      labelZh: '圖片自動裁切與側欄對照',
+      labelEn: 'Auto-Cropped Figures & Side Dock',
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_ab00c228.png`,
+      captionZh:
+        '自動裁切高解析度圖表於內文完整顯示，並可一鍵加入右側側欄固定參考，閱讀後續公式與段落免來回捲動。',
+      captionEn:
+        'Auto-cropped high-res figures render inline and pin to the right dock so you can read equations without scrolling back.',
+    },
   ],
   kanban: [
     {
@@ -783,7 +793,7 @@ export function HeroWorkspace({
                     <span>{lang === 'zh' ? currentShot.captionZh : currentShot.captionEn}</span>
                   </p>
                   <span className="font-code text-[11px] text-[var(--text-muted)]">
-                    PaperRead v1.5.3 · Real UI
+                    PaperRead v1.5.4 · Real UI
                   </span>
                 </div>
               </motion.div>

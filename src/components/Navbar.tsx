@@ -63,7 +63,7 @@ export function Navbar({
           />
           <span className="text-lg">PaperRead</span>
           <span className="font-code tabular-nums text-xs font-medium text-[var(--text-muted)]">
-            v1.5.3
+            v1.5.4
           </span>
         </a>
 

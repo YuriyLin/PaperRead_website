@@ -1,5 +1,18 @@
 import { useState } from 'react';
-import { ShieldOff, Terminal, Cloud, Cpu, Plus, ChevronDown, ExternalLink } from 'lucide-react';
+import {
+  ShieldOff,
+  Terminal,
+  Cloud,
+  Cpu,
+  Plus,
+  ChevronDown,
+  ExternalLink,
+  Zap,
+  Server,
+  CloudCog,
+  Maximize2,
+  X,
+} from 'lucide-react';
 import { Lang, Translations } from '../i18n/translations';
 
 interface FlexibleAISupportProps {
@@ -39,7 +52,8 @@ const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
     "translateModel": "Gemini 3.8 Flash (Antigravity CLI)",
     "askAiDefaultModel": "GPT-5.6-Terra (Codex CLI)",
     "useLocalAuthSession": true
-  }
+  },
+  "mineru": { "enabled": true, "mode": "local-or-cloud", "fallbackBuiltIn": true }
 }`,
   cloud: `{
   "ai": {
@@ -47,7 +61,8 @@ const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
     "mode": "cloud-api",
     "provider": "deepseek", // "openai" | "claude" | "gemini"
     "endpoint": "https://api.deepseek.com/v1"
-  }
+  },
+  "mineru": { "enabled": true, "mode": "cloud", "endpoint": "https://mineru.net" }
 }`,
   local: `{
   "ai": {
@@ -56,7 +71,8 @@ const CONFIG_EXAMPLES: Record<'none' | 'cli' | 'cloud' | 'local', string> = {
     "provider": "ollama", // or "lm-studio"
     "baseUrl": "http://127.0.0.1:11434",
     "model": "qwen3.6-35b-iq2m:latest"
-  }
+  },
+  "mineru": { "enabled": true, "mode": "local", "baseUrl": "http://127.0.0.1:8000" }
 }`,
 };
 
@@ -69,6 +85,21 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
   const [apiService, setApiService] = useState<'DeepSeek' | 'OpenAI' | 'Gemini' | 'Ollama'>(
     'DeepSeek'
   );
+  const [mineruTab, setMineruTab] = useState<'settings' | 'overview'>('settings');
+  const [zoomShot, setZoomShot] = useState<{ src: string; title: string } | null>(null);
+
+  const mineruShots = {
+    settings: {
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_5392148a.png`,
+      titleZh: '設定頁整合 MinerU PDF 結構解析（支援雲端／本地切換、連線測試與單頁實測）',
+      titleEn: 'MinerU PDF Structure Parser in Settings (Cloud / Local toggle, connection test & 1-page preview)',
+    },
+    overview: {
+      src: `${import.meta.env.BASE_URL}assets/aistudio/image_a9e252ee.png`,
+      titleZh: 'MinerU 結構解析說明：精準辨識 LaTeX 公式、跨欄合併儲存格表格與圖片座標',
+      titleEn: 'MinerU Overview: LaTeX formula extraction, complex table recognition & figure coordinates',
+    },
+  };
 
   const icons = {
     none: ShieldOff,
@@ -91,6 +122,8 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
       setAskAiModelId('gpt56terra');
     }
   };
+
+  const activeMineruShot = mineruShots[mineruTab];
 
   return (
     <section id="ai-models" className="py-20 lg:py-24">
@@ -164,14 +197,14 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
           })}
         </div>
 
-        {/* Interactive PaperRead v1.5.3 Settings · Model Switcher UI + Config JSON Toggle */}
+        {/* Interactive PaperRead v1.5.4 Settings · Model Switcher UI + Config JSON Toggle */}
         <div className="mt-6 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)]">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-subtle)] bg-[var(--bg-surface-2)] px-4 py-2.5 text-xs">
             <span className="font-code font-semibold text-[var(--text-primary)]">
               {previewView === 'ui'
                 ? lang === 'zh'
-                  ? 'PaperRead · 設定 · 模型切換介面 (v1.5.3)'
-                  : 'PaperRead · Settings · Model Switcher (v1.5.3)'
+                  ? 'PaperRead · 設定 · 模型切換介面 (v1.5.4)'
+                  : 'PaperRead · Settings · Model Switcher (v1.5.4)'
                 : '~/PaperRead/config.json'}
             </span>
             <div className="flex items-center gap-2">
@@ -237,7 +270,7 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
                 </div>
 
                 <div className="space-y-5 p-6">
-                  {/* Configured Model Grid (Matches Settings -> Model Screenshot) */}
+                  {/* Configured Model Grid */}
                   <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
                     {DEMO_MODELS.map((model) => {
                       const isTranslate = translateModelId === model.id;
@@ -391,7 +424,155 @@ export function FlexibleAISupport({ lang, t }: FlexibleAISupportProps) {
             </pre>
           )}
         </div>
+
+        {/* v1.5.4 Highlight: MinerU PDF Structure Parsing Engine */}
+        <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--border-strong)] bg-[var(--bg-surface)] shadow-xs">
+          <div className="grid grid-cols-1 gap-8 p-6 sm:p-8 lg:grid-cols-[1.02fr_1.08fr] lg:items-center">
+            {/* Left: Description & Cloud / Local Cards */}
+            <div>
+              <div className="font-code text-xs font-semibold tracking-[0.12em] text-[var(--accent-teal)]">
+                {t.mineru.eyebrow}
+              </div>
+              <h3 className="text-balance mt-2 text-xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-2xl">
+                {t.mineru.title}
+              </h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-[var(--text-secondary)]">
+                {t.mineru.desc}
+              </p>
+
+              {/* Speed & Token Efficiency Callout */}
+              <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-[var(--accent-amber)]/35 bg-[var(--bg-sage)] p-3.5 text-xs leading-relaxed text-[var(--text-primary)]">
+                <Zap className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-amber)]" />
+                <span>{t.mineru.efficiencyNote}</span>
+              </div>
+
+              {/* Local Self-Hosted vs. Cloud Mode Cards */}
+              <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-page)] p-4">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[var(--text-primary)]">
+                    <Server className="h-4 w-4 text-[var(--accent-indigo)]" />
+                    <span>{t.mineru.localTitle}</span>
+                  </div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-secondary)]">
+                    {t.mineru.localDesc}
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-page)] p-4">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[var(--text-primary)]">
+                    <CloudCog className="h-4 w-4 text-[var(--accent-teal)]" />
+                    <span>{t.mineru.cloudTitle}</span>
+                  </div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-secondary)]">
+                    {t.mineru.cloudDesc}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Real MinerU Settings & Explanation Modal Switcher */}
+            <div className="flex flex-col rounded-xl border border-[var(--border-strong)] bg-[var(--bg-page)] p-4">
+              <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-0.5 text-[11px]">
+                  <button
+                    type="button"
+                    onClick={() => setMineruTab('settings')}
+                    className={`rounded px-2.5 py-1 font-semibold transition-colors ${
+                      mineruTab === 'settings'
+                        ? 'bg-[var(--accent-indigo)] text-white'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    {lang === 'zh' ? '設定與實測介面' : 'Settings & Test'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setMineruTab('overview')}
+                    className={`rounded px-2.5 py-1 font-semibold transition-colors ${
+                      mineruTab === 'overview'
+                        ? 'bg-[var(--accent-indigo)] text-white'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    {lang === 'zh' ? '結構解析能力說明' : 'Parsing Capabilities'}
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setZoomShot({
+                      src: activeMineruShot.src,
+                      title: lang === 'zh' ? activeMineruShot.titleZh : activeMineruShot.titleEn,
+                    })
+                  }
+                  className="inline-flex h-7 items-center gap-1 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-2.5 text-[11px] font-semibold text-[var(--text-secondary)] hover:border-[var(--accent-indigo)] hover:text-[var(--text-primary)]"
+                >
+                  <Maximize2 className="h-3 w-3" />
+                  <span>{lang === 'zh' ? '放大' : 'Zoom'}</span>
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setZoomShot({
+                    src: activeMineruShot.src,
+                    title: lang === 'zh' ? activeMineruShot.titleZh : activeMineruShot.titleEn,
+                  })
+                }
+                className="group block w-full overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[#f6f3ec] text-left"
+              >
+                <img
+                  src={activeMineruShot.src}
+                  alt={lang === 'zh' ? activeMineruShot.titleZh : activeMineruShot.titleEn}
+                  referrerPolicy="no-referrer"
+                  className="aspect-[16/11] w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.01]"
+                />
+              </button>
+
+              <p className="mt-3 text-xs leading-relaxed text-[var(--text-secondary)]">
+                {lang === 'zh' ? activeMineruShot.titleZh : activeMineruShot.titleEn}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Lightbox Modal for MinerU Screenshots */}
+      {zoomShot && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs"
+          onClick={() => setZoomShot(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-[var(--bg-surface)] shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-5 py-3">
+              <div className="text-sm font-bold text-[var(--text-primary)]">{zoomShot.title}</div>
+              <button
+                type="button"
+                onClick={() => setZoomShot(null)}
+                aria-label="Close lightbox"
+                className="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:bg-[var(--bg-surface-2)] hover:text-[var(--text-primary)]"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="max-h-[82vh] overflow-auto bg-[#f6f3ec] p-2">
+              <img
+                src={zoomShot.src}
+                alt={zoomShot.title}
+                referrerPolicy="no-referrer"
+                className="mx-auto h-auto max-w-full rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
